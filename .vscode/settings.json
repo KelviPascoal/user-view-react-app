@@ -1,14 +1,12 @@
 {
-    "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true,
-    "editor.renderFinalNewline": "off",
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.fixAll.eslint": "explicit"
+    },
     "eslint.validate": [
         "javascript",
-        "javascriptreact",
         "typescript",
         "typescriptreact"
-    ],
-    "eslint.format.enable": true
+    ]
 }
