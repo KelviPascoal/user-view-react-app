@@ -5,6 +5,7 @@ export const theme = {
         background: '#FFFFFF',
         text: '#333333',
         border: '#E0E0E0',
+        highlight: '#bf9f59',
     },
     fonts: {
         main: '"Helvetica Neue", Helvetica, Arial, sans-serif',
