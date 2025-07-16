@@ -36,7 +36,7 @@ export default function usersReducer(state = initialState, action: any): UsersSt
         case actions.ADD_FAVORITE:
             return {
                 ...state,
-                favorites: state.favorites.some((u) => u.id === action.payload.id)
+                favorites: state.favorites.some((user) => user.id === action.payload.id)
                     ? state.favorites
                     : [...state.favorites, action.payload],
             };
@@ -44,7 +44,7 @@ export default function usersReducer(state = initialState, action: any): UsersSt
         case actions.REMOVE_FAVORITE:
             return {
                 ...state,
-                favorites: state.favorites.filter((u) => u.id !== action.payload),
+                favorites: state.favorites.filter((user) => user.id !== action.payload),
             };
 
         default:
