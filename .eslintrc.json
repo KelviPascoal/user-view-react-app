@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "plugin:unused-imports/recommended",
+    "prettier"
+  ]
+}
