@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { styled } from "styled-components";
-import { Button } from "../Button";
+import { Button } from "../../../../components/Button";
 import { FavoriteButton } from "../FavoriteButton";
-import { Flex } from "../Flex";
-import { User } from "../../store/modules/user/types";
+import { Flex } from "../../../../components/Flex";
+import { User } from "../../../../store/modules/user/types";
 
 const Wrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.border};
@@ -17,9 +17,8 @@ const Wrapper = styled.div`
 
 type UserCardProps = {
     user: User;
-    handleSelectUser: (user: User) => void;
-    handleAddFavorite: (user: User, isFavorite: boolean) => void;
-    favorites: User[];
+    handleSelectUser: () => void;
+    handleAddFavorite: () => void;
     isFavorite: boolean;
 };
 
@@ -35,9 +34,9 @@ export class UserCard extends Component<UserCardProps> {
                     <span>{user.phone}</span>
                 </Flex>
                 <Flex gap="1rem">
-                    <Button onClick={() => handleSelectUser(user)}>Detalhes</Button>
+                    <Button onClick={handleSelectUser}>Detalhes</Button>
                     <FavoriteButton
-                        onClick={() => handleAddFavorite(user, isFavorite)}
+                        onClick={handleAddFavorite}
                         isFavorite={isFavorite}
                     />
                 </Flex>

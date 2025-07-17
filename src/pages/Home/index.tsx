@@ -6,8 +6,8 @@ import { RootState } from '../../store/rootReducer';
 import { User } from '../../store/modules/user/types';
 import { Loader } from '../../components/Loader';
 import { Container } from '../../components/Container';
-import { SearchInput } from '../../components/Search';
-import { UserCard } from '../../components/UserCard';
+import { SearchInput } from './components/Search';
+import { UserCard } from './components/UserCard';
 import { useNavigate } from 'react-router-dom';
 import { Flex } from '../../components/Flex';
 import { Button } from '../../components/Button';
@@ -27,14 +27,14 @@ export function Home() {
         dispatch(filterUsersByName(e.target.value));
     };
 
-    const handleSelectUser = (user: User) => {
+    const handleSelectUser = React.useCallback((user: User) => {
         dispatch(setSelectedUser(user));
         navigate('/user-profile');
-    };
+    }, [dispatch, navigate]);
 
-    const handleAddFavorite = (user: User, isFavorite: boolean) => {
+    const handleAddFavorite = React.useCallback((user: User, isFavorite: boolean) => {
         if (!isFavorite) { dispatch(addFavorite(user)) } else dispatch(removeFavorite(user.id))
-    };
+    }, [dispatch]);
 
     const filtredUsersFavorites = () => {
         if (favorites.length) {
@@ -74,10 +74,9 @@ export function Home() {
                                 <UserCard
                                     key={user.id}
                                     user={user}
-                                    handleSelectUser={handleSelectUser}
-                                    handleAddFavorite={handleAddFavorite}
+                                    handleSelectUser={() => handleSelectUser(user)}
+                                    handleAddFavorite={() => handleAddFavorite(user, favorites.some((fav) => fav.id === user.id))}
                                     isFavorite={favorites.some((fav) => fav.id === user.id)}
-                                    favorites={favorites}
                                 />
                             ))}
                         </Flex>
@@ -87,10 +86,9 @@ export function Home() {
                                 <UserCard
                                     key={user.id}
                                     user={user}
-                                    handleSelectUser={handleSelectUser}
-                                    handleAddFavorite={handleAddFavorite}
+                                    handleSelectUser={() => handleSelectUser(user)}
+                                    handleAddFavorite={() => handleAddFavorite(user, favorites.some((fav) => fav.id === user.id))}
                                     isFavorite={favorites.some((fav) => fav.id === user.id)}
-                                    favorites={favorites}
                                 />
                             ))}
                         </Flex>
