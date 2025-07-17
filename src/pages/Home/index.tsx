@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 
 import { loadUsersRequest, filterUsersByName, setSelectedUser, addFavorite, removeFavorite } from '../../store/modules/user/actions';
 import { RootState } from '../../store/rootReducer';
@@ -10,19 +9,12 @@ import { FavoriteList } from '../../components/FavoriteList';
 import { Container } from '../../components/Container';
 import { SearchInput } from '../../components/Search';
 import { UserCard } from '../../components/UserCard';
-
-const Content = styled.div`
-  flex: 2;
-`;
-
-const List = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
+import { useNavigate } from 'react-router-dom';
+import { Flex } from '../../components/Flex';
 
 export function Home() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { filtered, loading, favorites } = useSelector((state: RootState) => state.users);
 
     useEffect(() => {
@@ -35,6 +27,7 @@ export function Home() {
 
     const handleSelectUser = (user: User) => {
         dispatch(setSelectedUser(user));
+        navigate('/user-profile');
     };
 
     const handleAddFavorite = (user: User, isFavorite: boolean) => {
@@ -42,31 +35,30 @@ export function Home() {
     };
 
     return (
-        <Container>
-            <Content>
-                <SearchInput
-                    handleSearch={handleSearch}
-                />
+        <Container as="main">
+            <SearchInput
+                handleSearch={handleSearch}
+            />
 
-                {loading ? (
-                    <Loader />
-                ) : (
-                    <List>
-                        {filtered.map((user) => (
-                            <UserCard
-                                key={user.id}
-                                user={user}
-                                handleSelectUser={handleSelectUser}
-                                handleAddFavorite={handleAddFavorite}
-                                isFavorite={favorites.some((fav) => fav.id === user.id)}
-                                favorites={favorites}
-                            />
-                        ))}
-                    </List>
-                )}
-            </Content>
+            {loading ? (
+                <Loader />
+            ) : (
+                <Flex as="ul" direction="column" gap="1rem">
+                    {filtered.map((user) => (
+                        <UserCard
+                            key={user.id}
+                            user={user}
+                            handleSelectUser={handleSelectUser}
+                            handleAddFavorite={handleAddFavorite}
+                            isFavorite={favorites.some((fav) => fav.id === user.id)}
+                            favorites={favorites}
+                        />
+                    ))}
+                </Flex>
+            )
+            }
 
             <FavoriteList />
-        </Container>
+        </Container >
     );
 }

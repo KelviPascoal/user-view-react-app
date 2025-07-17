@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import { styled } from "styled-components";
 import { Button } from "../Button";
 import { FavoriteButton } from "../FavoriteButton";
@@ -14,33 +15,33 @@ const Wrapper = styled.div`
   background-color: #fff;
 `;
 
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 type UserCardProps = {
-    user: User
+    user: User;
     handleSelectUser: (user: User) => void;
     handleAddFavorite: (user: User, isFavorite: boolean) => void;
     favorites: User[];
     isFavorite: boolean;
-}
+};
 
-export function UserCard({ user, handleSelectUser, handleAddFavorite, isFavorite }: UserCardProps) {
-    return (
-        <Wrapper key={user.id}>
-            <Content>
-                <strong>{user.name}</strong>
-                <span>{user.email}</span>
-                <span>{user.phone}</span>
-            </Content>
-            <Flex gap='1rem'>
-                <Button onClick={() => handleSelectUser(user)}>Detalhes</Button>
-                <FavoriteButton onClick={() => handleAddFavorite(user, isFavorite)}
-                    isFavorite={isFavorite}
-                />
-            </Flex>
-        </Wrapper>
-    )
+export class UserCard extends Component<UserCardProps> {
+    render() {
+        const { user, handleSelectUser, handleAddFavorite, isFavorite } = this.props;
+
+        return (
+            <Wrapper as="li" key={user.id}>
+                <Flex direction="column" gap="0.2rem">
+                    <strong>{user.name}</strong>
+                    <span>{user.email}</span>
+                    <span>{user.phone}</span>
+                </Flex>
+                <Flex gap="1rem">
+                    <Button onClick={() => handleSelectUser(user)}>Detalhes</Button>
+                    <FavoriteButton
+                        onClick={() => handleAddFavorite(user, isFavorite)}
+                        isFavorite={isFavorite}
+                    />
+                </Flex>
+            </Wrapper>
+        );
+    }
 }
