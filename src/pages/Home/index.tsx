@@ -5,17 +5,19 @@ import { loadUsersRequest, filterUsersByName, setSelectedUser, addFavorite, remo
 import { RootState } from '../../store/rootReducer';
 import { User } from '../../store/modules/user/types';
 import { Loader } from '../../components/Loader';
-import { FavoriteList } from '../../components/FavoriteList';
 import { Container } from '../../components/Container';
 import { SearchInput } from '../../components/Search';
 import { UserCard } from '../../components/UserCard';
 import { useNavigate } from 'react-router-dom';
 import { Flex } from '../../components/Flex';
+import { Button } from '../../components/Button';
+import React from 'react';
 
 export function Home() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { filtered, loading, favorites } = useSelector((state: RootState) => state.users);
+    const [showOnlyFavorites, setShowOnlyFavorites] = React.useState(false);
 
     useEffect(() => {
         dispatch(loadUsersRequest());
@@ -34,31 +36,70 @@ export function Home() {
         if (!isFavorite) { dispatch(addFavorite(user)) } else dispatch(removeFavorite(user.id))
     };
 
+    const filtredUsersFavorites = () => {
+        if (favorites.length) {
+            setShowOnlyFavorites(prev => !prev)
+        } else {
+            setShowOnlyFavorites(false)
+        }
+    }
+
+    useEffect(() => {
+        if (!favorites.length) {
+            setShowOnlyFavorites(false)
+        }
+
+        return
+    }, [favorites])
+
     return (
         <Container as="main">
-            <SearchInput
-                handleSearch={handleSearch}
-            />
+            <Flex alignItens='center' justify-content="space-between" gap="1rem" margin="0 0 1rem 0">
+                <SearchInput
+                    handleSearch={handleSearch}
+                />
+                <Button onClick={() => filtredUsersFavorites()} disabled={!favorites.length}>
+                    {!showOnlyFavorites ? 'Filtrar por favoritos' : 'Voltar a lista completa'}
+
+                </Button>
+            </Flex>
 
             {loading ? (
                 <Loader />
             ) : (
-                <Flex as="ul" direction="column" gap="1rem">
-                    {filtered.map((user) => (
-                        <UserCard
-                            key={user.id}
-                            user={user}
-                            handleSelectUser={handleSelectUser}
-                            handleAddFavorite={handleAddFavorite}
-                            isFavorite={favorites.some((fav) => fav.id === user.id)}
-                            favorites={favorites}
-                        />
-                    ))}
-                </Flex>
+                <>
+                    {!showOnlyFavorites ? (
+                        <Flex as="ul" direction="column" gap="1rem">
+                            {filtered.map((user) => (
+                                <UserCard
+                                    key={user.id}
+                                    user={user}
+                                    handleSelectUser={handleSelectUser}
+                                    handleAddFavorite={handleAddFavorite}
+                                    isFavorite={favorites.some((fav) => fav.id === user.id)}
+                                    favorites={favorites}
+                                />
+                            ))}
+                        </Flex>
+                    ) : (
+                        <Flex as="ul" direction="column" gap="1rem">
+                            {favorites.map((user) => (
+                                <UserCard
+                                    key={user.id}
+                                    user={user}
+                                    handleSelectUser={handleSelectUser}
+                                    handleAddFavorite={handleAddFavorite}
+                                    isFavorite={favorites.some((fav) => fav.id === user.id)}
+                                    favorites={favorites}
+                                />
+                            ))}
+                        </Flex>
+                    )}
+                </>
+
             )
             }
 
-            <FavoriteList />
         </Container >
     );
 }
