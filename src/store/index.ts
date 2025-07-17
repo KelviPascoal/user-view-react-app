@@ -22,3 +22,4 @@ sagaMiddleware.run(rootSaga);
 // Exporta os tipos da store
 export type AppDispatch = typeof store.dispatch;
 export type AppStore = typeof store;
+export type RootState = ReturnType<typeof store.getState>;
