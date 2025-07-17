@@ -1,46 +1,76 @@
-# Getting Started with Create React App
+# Foursales User View
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação React para visualização, filtro e gerenciamento de usuários, utilizando Redux, Redux-Saga e Styled Components.
 
-## Available Scripts
+## Sumário
 
-In the project directory, you can run:
+- [Visão Geral](#visão-geral)
+- [Instalação](#instalação)
+- [Scripts Disponíveis](#scripts-disponíveis)
+- [Estrutura de Pastas](#estrutura-de-pastas)
+- [Principais Funcionalidades](#principais-funcionalidades)
+- [Estilo e Temas](#estilo-e-temas)
+- [Testes](#testes)
+- [Configuração de Lint e Prettier](#configuração-de-lint-e-prettier)
 
-### `yarn start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Visão Geral
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Este projeto foi criado com [Create React App](https://github.com/facebook/create-react-app) e tem como objetivo listar usuários, permitir busca, favoritar e visualizar detalhes de cada usuário.
 
-### `yarn test`
+## Instalação
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+yarn install
+```
 
-### `yarn build`
+## Scripts Disponíveis
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `yarn start` — Inicia o servidor de desenvolvimento.
+- `yarn build` — Gera o build de produção.
+- `yarn test` — Executa os testes.
+- `yarn eject` — Eject do Create React App.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Estrutura de Pastas
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+src/
+  components/         // Componentes reutilizáveis (Button, Flex, Loader, etc)
+  pages/              // Páginas principais (Home, UserProfile)
+  store/              // Redux, Sagas e Tipos
+  styles/             // Temas e estilos globais
+public/               // Arquivos estáticos
+```
 
-### `yarn eject`
+## Principais Funcionalidades
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- **Listagem de Usuários:** Página inicial ([Home](src/pages/Home/index.tsx)) lista usuários vindos da API.
+- **Busca:** Filtro por nome de usuário.
+- **Favoritos:** Adição/remoção de usuários favoritos.
+- **Detalhes:** Visualização detalhada do usuário ([UserProfile](src/pages/UserProfile/index.tsx)).
+- **Persistência:** Estado gerenciado via Redux Toolkit e Redux-Saga.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Estilo e Temas
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Utiliza [styled-components](https://styled-components.com/) para estilização.
+- Tema configurado em [`theme`](src/styles/theme.ts).
+- Estilos globais em [`global.ts`](src/styles/global.ts).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Testes
 
-## Learn More
+- Configuração de testes com [Testing Library](https://testing-library.com/).
+- Arquivo de setup: [`setupTests.ts`](src/setupTests.ts).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Configuração de Lint e Prettier
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ESLint configurado em [`.eslintrc.js`](.eslintrc.js).
+- Prettier configurado em [`.prettierrc`](.prettierrc).
+
+---
+
+## Referências
+
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Redux-Saga](https://redux-saga.js.org/)
+- [React Router](https://reactrouter.com/)
