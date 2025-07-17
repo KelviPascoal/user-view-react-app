@@ -17,8 +17,9 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    "jest/globals": true
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint', 'unused-imports'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'unused-imports', 'jest'],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
