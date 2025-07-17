@@ -2,12 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './styles/theme';
-import { Provider } from 'react-redux';
-import { store } from './store';
-import { GlobalStyle } from './styles/global';
-import './i18n/i18n'
+import { Providers } from './Providers';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,12 +10,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <GlobalStyle />
-        <App />
-      </Provider>
-    </ThemeProvider>
+    <Providers>
+      <App />
+    </Providers>
   </React.StrictMode>
 );
 
