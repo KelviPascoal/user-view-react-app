@@ -19,11 +19,12 @@ type UserCardProps = {
     handleSelectUser: () => void;
     handleAddFavorite: () => void;
     isFavorite: boolean;
+    buttonDetailsText: string
 };
 
 export class UserCard extends React.Component<UserCardProps> {
     render() {
-        const { user, handleSelectUser, handleAddFavorite, isFavorite } = this.props;
+        const { user, handleSelectUser, handleAddFavorite, isFavorite, buttonDetailsText } = this.props;
 
         return (
             <Wrapper as="li" key={user.id}>
@@ -33,7 +34,7 @@ export class UserCard extends React.Component<UserCardProps> {
                     <span>{user.phone}</span>
                 </Flex>
                 <Flex gap="1rem">
-                    <Button onClick={handleSelectUser}>Detalhes</Button>
+                    <Button onClick={handleSelectUser}>{buttonDetailsText}</Button>
                     <FavoriteButton
                         onClick={handleAddFavorite}
                         isFavorite={isFavorite}

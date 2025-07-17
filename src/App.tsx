@@ -1,16 +1,12 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
-import { UserProfile } from './pages/UserProfile';
-
+import { AppRouter } from './App.route';
+import { TranslateButton } from './components/TranslateButton';
+import { ENABLE_TRANSLATE_BUTTON } from './constants/env'
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/user-profile" element={<UserProfile />} />
-      </Routes>
-    </BrowserRouter>
-  );
+
+  return <>
+    <AppRouter />
+    {ENABLE_TRANSLATE_BUTTON && <TranslateButton />}
+  </>
 }
 
 export default App;

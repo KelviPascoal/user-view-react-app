@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Button } from '../../../../components/Button';
+import { useTranslation } from 'react-i18next';
 
 interface FavoriteButtonProps {
     isFavorite?: boolean;
@@ -11,13 +12,14 @@ export const FavoriteButton = ({
     isFavorite,
     onClick,
 }: FavoriteButtonProps) => {
-    const [hovering, setHovering] = useState(false);
+    const [hovering, setHovering] = React.useState(false);
+    const { t } = useTranslation();
 
     const label = !isFavorite
-        ? 'Favoritar'
+        ? t('ADD_TO_FAVORITE')
         : hovering
-            ? 'Remover dos favoritos'
-            : 'Favorito';
+            ? t('REMOVE_FROM_FAVORITE')
+            : t('FAVORITE');
 
     return (
         <ButtonBase
