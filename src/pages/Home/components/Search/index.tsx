@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { styled } from "styled-components";
 
 const Input = styled.input`
@@ -9,10 +10,14 @@ const Input = styled.input`
 `;
 
 type SearchInputProps = {
-    handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const SearchInput = ({ handleSearch }: SearchInputProps) => (
-    <Input type="text" placeholder="Buscar por nome"
-        onChange={() => handleSearch} />
-)
+export const SearchInput = ({ handleSearch }: SearchInputProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <Input type="text" placeholder={t("SEARCH_BY_NAME")}
+      onChange={() => handleSearch} />
+  )
+}
