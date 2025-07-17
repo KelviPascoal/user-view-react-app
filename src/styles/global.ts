@@ -35,20 +35,11 @@ export const GlobalStyle = createGlobalStyle`
     margin-bottom: ${({ theme }) => theme.spacing.medium};
   }
 
-  ul {
+  ul, li {
     list-style: none;
+    margin: 0;
+    padding: 0;
     padding-left: 0;
-  }
-
-  button {
-    font-family: inherit;
-    cursor: pointer;
-    background: none;
-    border: none;
-  }
-
-  img {
-    max-width: 100%;
-    display: block;
+    margin-left: 0;
   }
 `;
