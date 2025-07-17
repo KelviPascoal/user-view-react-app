@@ -6,12 +6,13 @@ import {
     loadUsersFailure,
 } from './actions';
 import { SagaIterator } from 'redux-saga';
+import { API_URL } from '../../../constants/env';
 
 function* loadUsersSaga(): SagaIterator {
     try {
         const response = yield call(
             axios.get,
-            'https://jsonplaceholder.typicode.com/users'
+            String(API_URL)
         );
 
         yield put(loadUsersSuccess(response.data));
