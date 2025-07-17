@@ -1,42 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { connect, ConnectedProps } from 'react-redux';
 import { RootState } from '../../store';
-import { Container } from '../../components/Container';
-import { BackLink } from '../../components/BackLink';
-
-export const Wrapper = styled.div`
-  padding: 0 16px;
-`;
-
-const Title = styled.h1`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  margin-bottom: 24px;
-`;
-
-const Section = styled.section`
-  margin-bottom: 24px;
-`;
-
-const Subtitle = styled.h2`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 18px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
-  padding-bottom: 4px;
-`;
-
-const Info = styled.p`
-  font-family: ${({ theme }) => theme.fonts.main};
-  margin: 4px 0;
-`;
-
-const Message = styled.p`
-  text-align: center;
-  margin-top: 80px;
-  font-family: ${({ theme }) => theme.fonts.main};
-  color: ${({ theme }) => theme.colors.text};
-`;
+import { Container, BackLink } from '../../components';
+import { Wrapper, Info, Message, Section, Subtitle, Title, } from './components';
 
 const mapStateToProps = (state: RootState) => ({
   selectedUser: state.users.selectedUser,
@@ -57,7 +23,6 @@ class UserProfileComponent extends Component<Props> {
     return (
       <Container>
         <Wrapper>
-
           <BackLink to="/">← Voltar</BackLink>
 
           <Title>{user.name}</Title>

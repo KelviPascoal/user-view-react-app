@@ -1,17 +1,12 @@
-import { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { loadUsersRequest, filterUsersByName, setSelectedUser, addFavorite, removeFavorite } from '../../store/modules/user/actions';
 import { RootState } from '../../store/rootReducer';
 import { User } from '../../store/modules/user/types';
-import { Loader } from '../../components/Loader';
-import { Container } from '../../components/Container';
-import { SearchInput } from './components/Search';
-import { UserCard } from './components/UserCard';
 import { useNavigate } from 'react-router-dom';
-import { Flex } from '../../components/Flex';
-import { Button } from '../../components/Button';
-import React from 'react';
+import { Loader, Container, Flex, Button } from '../../components';
+import { SearchInput, UserCard } from './components';
 
 export function Home() {
     const dispatch = useDispatch();
@@ -19,7 +14,7 @@ export function Home() {
     const { filtered, loading, favorites } = useSelector((state: RootState) => state.users);
     const [showOnlyFavorites, setShowOnlyFavorites] = React.useState(false);
 
-    useEffect(() => {
+    React.useEffect(() => {
         dispatch(loadUsersRequest());
     }, [dispatch]);
 
@@ -44,7 +39,7 @@ export function Home() {
         }
     }
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (!favorites.length) {
             setShowOnlyFavorites(false)
         }

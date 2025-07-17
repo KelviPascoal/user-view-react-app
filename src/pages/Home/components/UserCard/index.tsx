@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { styled } from "styled-components";
-import { Button } from "../../../../components/Button";
 import { FavoriteButton } from "../FavoriteButton";
-import { Flex } from "../../../../components/Flex";
 import { User } from "../../../../store/modules/user/types";
+import { Button, Flex } from "../../../../components";
 
 const Wrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.border};
@@ -22,7 +21,7 @@ type UserCardProps = {
     isFavorite: boolean;
 };
 
-export class UserCard extends Component<UserCardProps> {
+export class UserCard extends React.Component<UserCardProps> {
     render() {
         const { user, handleSelectUser, handleAddFavorite, isFavorite } = this.props;
 
