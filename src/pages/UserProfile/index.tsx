@@ -25,12 +25,20 @@ class UserProfileComponent extends Component<Props> {
         <Wrapper>
           <BackLink to="/">← Voltar</BackLink>
 
-          <Title>{user.name}</Title>
+          <Title>
+            {user.name} <small style={{ fontWeight: 'normal' }}>@{user.username}</small>
+          </Title>
 
           <Section>
             <Subtitle>Informações básicas</Subtitle>
             <Info><strong>Email:</strong> {user.email}</Info>
             <Info><strong>Telefone:</strong> {user.phone}</Info>
+            <Info>
+              <strong>Website:</strong>{' '}
+              <a href={`https://${user.website}`} target="_blank" rel="noopener noreferrer">
+                {user.website}
+              </a>
+            </Info>
           </Section>
 
           <Section>

@@ -16,5 +16,5 @@ const Spinner = styled.div`
 `;
 
 export function Loader() {
-  return <Spinner />;
+  return <Spinner data-testid="spinner" />;
 }

@@ -7,8 +7,10 @@ import { User } from '../../store/modules/user/types';
 import { useNavigate } from 'react-router-dom';
 import { Loader, Container, Flex, Button } from '../../components';
 import { SearchInput, UserCard } from './components';
+import { useTranslation } from 'react-i18next';
 
 export function Home() {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { filtered, loading, favorites } = useSelector((state: RootState) => state.users);
@@ -54,7 +56,7 @@ export function Home() {
                     handleSearch={handleSearch}
                 />
                 <Button onClick={() => filtredUsersFavorites()} disabled={!favorites.length}>
-                    {!showOnlyFavorites ? 'Filtrar por favoritos' : 'Voltar a lista completa'}
+                    {!showOnlyFavorites ? t('FILTER_BY_FAVORITE') : t('BACK_TO_FULL_LIST')}
 
                 </Button>
             </Flex>
@@ -67,6 +69,7 @@ export function Home() {
                         <Flex as="ul" direction="column" gap="1rem">
                             {filtered.map((user) => (
                                 <UserCard
+                                    buttonDetailsText={t('DETAILS')}
                                     key={user.id}
                                     user={user}
                                     handleSelectUser={() => handleSelectUser(user)}
@@ -79,6 +82,7 @@ export function Home() {
                         <Flex as="ul" direction="column" gap="1rem">
                             {favorites.map((user) => (
                                 <UserCard
+                                    buttonDetailsText={t('DETAILS')}
                                     key={user.id}
                                     user={user}
                                     handleSelectUser={() => handleSelectUser(user)}
