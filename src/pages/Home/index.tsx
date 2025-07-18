@@ -1,7 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { loadUsersRequest, filterUsersByName, setSelectedUser, addFavorite, removeFavorite } from '../../store/modules/user/actions';
+import {
+    loadUsersRequest,
+    setSelectedUser,
+    addFavorite,
+    removeFavorite
+} from '../../store/modules/user/actions';
 import { RootState } from '../../store/rootReducer';
 import { User } from '../../store/modules/user/types';
 import { useNavigate } from 'react-router-dom';
@@ -13,15 +18,18 @@ export function Home() {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const { filtered, loading, favorites } = useSelector((state: RootState) => state.users);
+
     const [showOnlyFavorites, setShowOnlyFavorites] = React.useState(false);
+    const [searchTerm, setSearchTerm] = React.useState('');
 
     React.useEffect(() => {
         dispatch(loadUsersRequest());
     }, [dispatch]);
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(filterUsersByName(e.target.value));
+        setSearchTerm(e.target.value);
     };
 
     const handleSelectUser = React.useCallback((user: User) => {
@@ -30,73 +38,61 @@ export function Home() {
     }, [dispatch, navigate]);
 
     const handleAddFavorite = React.useCallback((user: User, isFavorite: boolean) => {
-        if (!isFavorite) { dispatch(addFavorite(user)) } else dispatch(removeFavorite(user.id))
+        if (!isFavorite) {
+            dispatch(addFavorite(user));
+        } else {
+            dispatch(removeFavorite(user.id));
+        }
     }, [dispatch]);
 
     const filtredUsersFavorites = () => {
         if (favorites.length) {
-            setShowOnlyFavorites(prev => !prev)
+            setShowOnlyFavorites(prev => !prev);
         } else {
-            setShowOnlyFavorites(false)
+            setShowOnlyFavorites(false);
         }
-    }
+    };
 
     React.useEffect(() => {
         if (!favorites.length) {
-            setShowOnlyFavorites(false)
+            setShowOnlyFavorites(false);
         }
+    }, [favorites]);
 
-        return
-    }, [favorites])
+    // Lista filtrada de acordo com searchTerm e favoritos
+    const filteredList = React.useMemo(() => {
+        const baseList = showOnlyFavorites ? favorites : filtered;
+
+        return baseList.filter(user =>
+            user.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }, [searchTerm, showOnlyFavorites, filtered, favorites]);
 
     return (
         <Container as="main">
             <Flex alignItens='center' justify-content="space-between" gap="1rem" margin="0 0 1rem 0">
-                <SearchInput
-                    handleSearch={handleSearch}
-                />
-                <Button onClick={() => filtredUsersFavorites()} disabled={!favorites.length}>
+                <SearchInput handleSearch={handleSearch} />
+                <Button onClick={filtredUsersFavorites} disabled={!favorites.length}>
                     {!showOnlyFavorites ? t('FILTER_BY_FAVORITE') : t('BACK_TO_FULL_LIST')}
-
                 </Button>
             </Flex>
 
             {loading ? (
                 <Loader />
             ) : (
-                <>
-                    {!showOnlyFavorites ? (
-                        <Flex as="ul" direction="column" gap="1rem">
-                            {filtered.map((user) => (
-                                <UserCard
-                                    buttonDetailsText={t('DETAILS')}
-                                    key={user.id}
-                                    user={user}
-                                    handleSelectUser={() => handleSelectUser(user)}
-                                    handleAddFavorite={() => handleAddFavorite(user, favorites.some((fav) => fav.id === user.id))}
-                                    isFavorite={favorites.some((fav) => fav.id === user.id)}
-                                />
-                            ))}
-                        </Flex>
-                    ) : (
-                        <Flex as="ul" direction="column" gap="1rem">
-                            {favorites.map((user) => (
-                                <UserCard
-                                    buttonDetailsText={t('DETAILS')}
-                                    key={user.id}
-                                    user={user}
-                                    handleSelectUser={() => handleSelectUser(user)}
-                                    handleAddFavorite={() => handleAddFavorite(user, favorites.some((fav) => fav.id === user.id))}
-                                    isFavorite={favorites.some((fav) => fav.id === user.id)}
-                                />
-                            ))}
-                        </Flex>
-                    )}
-                </>
-
-            )
-            }
-
-        </Container >
+                <Flex as="ul" direction="column" gap="1rem">
+                    {filteredList.map((user) => (
+                        <UserCard
+                            buttonDetailsText={t('DETAILS')}
+                            key={user.id}
+                            user={user}
+                            handleSelectUser={() => handleSelectUser(user)}
+                            handleAddFavorite={() => handleAddFavorite(user, favorites.some((fav) => fav.id === user.id))}
+                            isFavorite={favorites.some((fav) => fav.id === user.id)}
+                        />
+                    ))}
+                </Flex>
+            )}
+        </Container>
     );
 }

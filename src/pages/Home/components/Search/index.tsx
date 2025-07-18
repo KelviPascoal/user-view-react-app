@@ -18,6 +18,6 @@ export const SearchInput = ({ handleSearch }: SearchInputProps) => {
 
   return (
     <Input type="text" placeholder={t("SEARCH_BY_NAME")}
-      onChange={() => handleSearch} />
+      onChange={handleSearch} />
   )
 }
