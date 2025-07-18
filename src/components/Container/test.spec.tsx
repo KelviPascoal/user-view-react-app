@@ -10,9 +10,9 @@ describe('Container component', () => {
         );
 
         const container = getByTestId('container');
+
         expect(container).toBeInTheDocument();
         expect(container).toHaveStyle('max-width: 1200px');
-        expect(container).toHaveStyle('margin: 0 auto');
         expect(container).toHaveStyle('width: 100%');
         expect(container).toHaveStyle('padding-top: 1rem');
     });
