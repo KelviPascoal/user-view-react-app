@@ -8,7 +8,7 @@ import {
 import { SagaIterator } from 'redux-saga';
 import { API_URL } from '../../../constants/env';
 
-function* loadUsersSaga(): SagaIterator {
+export function* loadUsersSaga(): SagaIterator {
     try {
         const response = yield call(
             axios.get,
