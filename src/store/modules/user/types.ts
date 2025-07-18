@@ -18,10 +18,12 @@ export interface Company {
 export interface User {
     id: number;
     name: string;
+    username: string
     email: string;
     phone: string;
     address: Address;
     company: Company;
+    website: string
 }
 
 export interface UsersState {
