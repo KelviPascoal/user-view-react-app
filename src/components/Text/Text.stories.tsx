@@ -15,7 +15,7 @@ const meta: Meta<typeof Text> = {
             options: ['small', 'medium', 'large'],
         },
         as: {
-            control: false, // desativa controle no Storybook
+            control: false,
         },
     },
 };

@@ -24,14 +24,6 @@ export default meta;
 
 type Story = StoryObj<typeof Input>;
 
-export const Playground: Story = {
-    args: {
-        placeholder: 'Digite algo...',
-        type: 'text',
-        disabled: false,
-    },
-    render: (args) => <Input {...args} />,
-};
 export const Default: Story = {
     args: {
         placeholder: 'Campo de entrada padrão',
@@ -72,15 +64,6 @@ export const NumberInput: Story = {
     args: {
         placeholder: 'Digite um número',
         type: 'number',
-        disabled: false,
-    },
-    render: (args) => <Input {...args} />,
-};
-
-export const CustomPlaceholder: Story = {
-    args: {
-        placeholder: 'Placeholder personalizado',
-        type: 'text',
         disabled: false,
     },
     render: (args) => <Input {...args} />,
