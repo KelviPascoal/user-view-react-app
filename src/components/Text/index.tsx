@@ -1,59 +1,64 @@
 import styled, { css } from 'styled-components';
-import {
-    space,
-    color,
-    typography,
-    layout,
-    SpaceProps,
-    ColorProps,
-    TypographyProps,
-    LayoutProps,
-    compose,
-} from 'styled-system';
 import React from 'react';
 
 type Variant = 'primary' | 'highlight';
 type Size = 'small' | 'medium' | 'large';
 
-type TextProps = SpaceProps &
-    ColorProps &
-    TypographyProps &
-    LayoutProps & {
-        as?: React.ElementType;
-        children: React.ReactNode;
-        variant?: Variant;
-    };
+export interface TextProps extends React.HTMLAttributes<HTMLElement> {
+    as?: React.ElementType;
+    children: React.ReactNode;
+    variant?: Variant;
+    size?: Size;
+
+    margin?: string;
+    padding?: string;
+    color?: string;
+    backgroundColor?: string;
+    fontSize?: string;
+    fontWeight?: string;
+    textAlign?: string;
+    lineHeight?: string;
+    display?: string;
+    width?: string;
+    height?: string;
+}
 
 const variantStyles = {
     primary: css`
-        color: ${({ theme }) => theme.colors.primary};
-    `,
+    color: ${({ theme }) => theme.colors.primary};
+  `,
     highlight: css`
-        color: ${({ theme }) => theme.colors.highlight};
-    `,
+    color: ${({ theme }) => theme.colors.highlight};
+  `,
 };
 
 const sizeStyles = {
     small: css`
-        font-size: ${({ theme }) => theme.font.sizes.xsmall};
-    `,
+    font-size: ${({ theme }) => theme.font.sizes.xsmall};
+  `,
     medium: css`
-        font-size: ${({ theme }) => theme.font.sizes.small};
-    `,
+    font-size: ${({ theme }) => theme.font.sizes.small};
+  `,
     large: css`
-        font-size: ${({ theme }) => theme.font.sizes.xxlarge};
-    `,
+    font-size: ${({ theme }) => theme.font.sizes.xxlarge};
+  `,
 };
 
 export const Text = styled.p<TextProps>`
-    ${({ theme, variant, size = 'medium' }) => css`
-    margin: 0;
+  ${({ theme, variant, size = 'medium', ...props }) => css`
+    margin: ${props.margin || '0'};
+    padding: ${props.padding || '0'};
+    color: ${props.color || 'inherit'};
+    background-color: ${props.backgroundColor || 'transparent'};
+    font-size: ${props.fontSize || theme.font.sizes.medium};
     font-family: ${theme.font.family};
-    font-size: ${theme.font.sizes.medium};
-    line-height: 1.5;
+    text-align: ${props.textAlign || 'left'};
+    line-height: ${props.lineHeight || '1.5'};
+    display: ${props.display || 'block'};
+    width: ${props.width || 'auto'};
+    height: ${props.height || 'auto'};
+
     ${variant && variantStyles[variant]}
-    ${size !== null ? sizeStyles[size as Size] : sizeStyles.medium}
-    
-    ${compose(space, color, typography, layout)};
-`}
+    ${size && sizeStyles[size]}
+  `}
 `;

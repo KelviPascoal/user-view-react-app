@@ -91,13 +91,13 @@ export function Home() {
                             key={user.id}
                             user={user}
                             sideItems={
-                                <>
+                                <Box display="flex" gap="1rem" height={'100%'}>
                                     <Button onClick={() => handleSelectUser(user)}>{t('DETAILS')}</Button>
                                     <FavoriteButton
                                         onClick={() => handleAddFavorite(user, checkIfFavorite(user, favorites))}
                                         isFavorite={checkIfFavorite(user, favorites)}
                                     />
-                                </>
+                                </Box>
                             }
                         />
                     ))}

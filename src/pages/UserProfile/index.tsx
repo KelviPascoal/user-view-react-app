@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { RootState } from '../../store';
-import { Box, Container, Heading, Text } from '../../components';
+import { Box, Card, Container, Heading, Text } from '../../components';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '../../components/Link';
 import { useTranslation } from 'react-i18next';
@@ -33,18 +33,7 @@ class UserProfileComponent extends React.Component<Props> {
             ← {t('BACK')}
           </Link>
 
-          <Box
-            borderStyle="solid"
-            borderWidth="0.5px"
-            borderRadius="md"
-            marginTop="1rem"
-            background="white"
-            p={4}
-            backgroundImage="linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('/profile-decoration.png')"
-            backgroundPosition="right center"
-            backgroundRepeat="no-repeat"
-            backgroundSize="contain"
-          >
+          <Card>
             <Box display="flex" alignItems="center" marginBottom="1rem" gap="0.5rem">
               <Heading variant="primary" size="large">
                 {user.name}
@@ -95,7 +84,7 @@ class UserProfileComponent extends React.Component<Props> {
                 <strong>{t('SECTOR')}:</strong> {user.company.bs}
               </Text>
             </Box>
-          </Box>
+          </Card>
         </Box>
       </Container>
     );

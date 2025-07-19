@@ -3,7 +3,7 @@ import { css, styled } from "styled-components";
 
 type ButtonVariant = 'primary' | 'secondary' | 'highlight';
 
-export interface ButtonProps {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   disabled?: boolean;
 }
@@ -55,6 +55,9 @@ export const Button = styled.button<ButtonProps>`
     cursor: pointer;
     white-space: nowrap;
     transition: background-color 0.3s ease;
+    min-height: 36px;
+    height: 36px;
+
 
     ${variantStyles[variant || 'primary']}
     ${disabled && disabledStyles}
