@@ -3,7 +3,7 @@ import { css, styled } from "styled-components";
 
 type ButtonVariant = 'primary' | 'secondary' | 'highlight';
 
-interface ButtonProps {
+export interface ButtonProps {
   variant?: ButtonVariant;
   disabled?: boolean;
 }
@@ -47,8 +47,8 @@ const disabledStyles = css`
 
 export const Button = styled.button<ButtonProps>`
   ${({ theme, variant, disabled }) => css`
-    padding: ${`${theme.spacings.xxsmall} ${theme.spacings.xsmall}`};
     font-size: ${theme.font.sizes.small};
+    padding: ${`${theme.spacings.xxsmall} ${theme.spacings.xsmall}`};
     font-family: ${theme.font.family};
     border: none;
     border-radius: ${theme.border.radius};

@@ -33,7 +33,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +56,9 @@
     ]
   },
   "devDependencies": {
+    "@storybook/preset-create-react-app": "9.0.17",
+    "@storybook/react": "^9.0.17",
+    "@storybook/react-webpack5": "9.0.17",
     "@types/i18next": "^13.0.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/redux-saga": "^0.10.5",
@@ -66,8 +71,12 @@
     "eslint-plugin-jest": "^29.0.1",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-storybook": "9.0.17",
     "eslint-plugin-unused-imports": "^4.1.4",
     "prettier": "^3.1.0",
-    "redux-saga-test-plan": "^4.0.6"
+    "prop-types": "15.8.1",
+    "redux-saga-test-plan": "^4.0.6",
+    "storybook": "9.0.17",
+    "webpack": "5.100.2"
   }
 }

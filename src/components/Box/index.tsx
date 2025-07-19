@@ -23,7 +23,7 @@ import {
   compose,
 } from 'styled-system';
 
-type BoxProps = SpaceProps &
+export type BoxProps = SpaceProps &
   LayoutProps &
   ColorProps &
   BorderProps &

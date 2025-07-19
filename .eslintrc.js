@@ -20,13 +20,7 @@ module.exports = {
     "jest/globals": true
   },
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'unused-imports', 'jest'],
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended', 'prettier', 'plugin:storybook/recommended'],
   rules: {
     // Regras de estilo e boas práticas
     'react/react-in-jsx-scope': 'off',

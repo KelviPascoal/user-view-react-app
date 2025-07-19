@@ -13,7 +13,6 @@ import {
 import React from 'react';
 import { darken } from 'polished';
 
-type Variant = 'primary' | 'highlight';
 type Size = 'small' | 'medium' | 'large';
 
 type ButtonLinkProps = SpaceProps &
@@ -22,7 +21,6 @@ type ButtonLinkProps = SpaceProps &
     TypographyProps & {
         as?: React.ElementType;
         children: React.ReactNode;
-        variant?: Variant;
         size?: Size;
         href?: string;
     };
@@ -62,9 +60,3 @@ export const Link = styled.a<ButtonLinkProps>`
         ${compose(space, color, layout, typography)}
     `}
 `;
-
-Link.defaultProps = {
-    as: 'a',
-    variant: 'primary',
-    size: 'medium',
-};

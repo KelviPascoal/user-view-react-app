@@ -57,7 +57,3 @@ export const Text = styled.p<TextProps>`
     ${compose(space, color, typography, layout)};
 `}
 `;
-
-Text.defaultProps = {
-    as: 'p',
-};

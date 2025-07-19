@@ -1,7 +1,7 @@
 import React, { JSX } from "react";
 import { styled } from "styled-components";
 import { User } from "../../store/modules/user/types";
-import { Box, Heading, Text } from "..";
+import { Box, Heading, Text } from "../";
 
 const Wrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.border};
