@@ -1,6 +1,7 @@
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { Box } from './';
 
-const meta = {
+const meta: Meta<typeof Box> = {
     title: 'Components/Box',
     component: Box,
     tags: ['autodocs'],
@@ -9,7 +10,6 @@ const meta = {
         color: { control: 'color' },
         padding: { control: 'text' },
         borderRadius: { control: 'text' },
-        boxShadow: { control: 'text' },
         gap: { control: 'text' },
         display: {
             control: 'select',
@@ -20,18 +20,18 @@ const meta = {
 
 export default meta;
 
-export const Playground = {
+type Story = StoryObj<typeof Box>;
+
+export const Playground: Story = {
     args: {
         backgroundColor: '#e0f7fa',
         color: '#006064',
         padding: '16px',
         borderRadius: '8px',
-        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
         display: 'flex',
         gap: '12px',
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    render: (args: any) => (
+    render: (args) => (
         <Box {...args}>
             <Box backgroundColor="#004d40" color="#fff" padding="8px" borderRadius="4px" flex="1">
                 Item 1
@@ -44,4 +44,14 @@ export const Playground = {
             </Box>
         </Box>
     ),
+};
+export const Default: Story = {
+    args: {
+        backgroundColor: '#f0f0f0',
+        color: '#333',
+        padding: '20px',
+        borderRadius: '10px',
+        display: 'block',
+    },
+    render: (args) => <Box {...args}>This is a default Box component</Box>,
 };

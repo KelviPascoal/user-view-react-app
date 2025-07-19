@@ -1,15 +1,10 @@
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { Text } from './';
 
-const meta = {
+const meta: Meta<typeof Text> = {
     title: 'Components/Text',
     component: Text,
     tags: ['autodocs'],
-    args: {
-        children: 'Texto de exemplo',
-        variant: 'primary',
-        size: 'medium',
-    },
     argTypes: {
         variant: {
             control: 'select',
@@ -20,24 +15,27 @@ const meta = {
             options: ['small', 'medium', 'large'],
         },
         as: {
-            control: false,
+            control: false, // desativa controle no Storybook
         },
     },
 };
 
 export default meta;
 
-export const Default = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    render: (args: any) => <Text {...args} />
+type Story = StoryObj<typeof Text>;
+
+export const Default: Story = {
+    args: {
+        children: 'Texto de exemplo',
+        variant: 'primary',
+        size: 'medium',
+    },
 };
 
-export const Highlight = {
+export const Highlight: Story = {
     args: {
         children: 'Texto em destaque',
         variant: 'highlight',
         size: 'large',
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    render: (args: any) => <Text {...args} />
 };
