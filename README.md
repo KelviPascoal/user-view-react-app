@@ -1,6 +1,13 @@
-# Foursales User View
+# Kelvi Pascoal User View
 
-Aplicação React para visualização, filtro e gerenciamento de usuários, utilizando Redux, Redux-Saga e Styled Components.
+Aplicação React para visualização, filtro e gerenciamento de usuários, utilizando Redux Toolkit, Redux-Saga, Styled Components e i18n.
+
+## 🔗 Links de Produção
+
+- **Página Principal:** [https://kelvi-pascoal-user-view.vercel.app/](https://kelvi-pascoal-user-view.vercel.app/)
+- **Storybook:** [https://kelvi-pascoal-user-view-docs.vercel.app](https://kelvi-pascoal-user-view-docs.vercel.app)
+
+---
 
 ## Sumário
 
@@ -12,12 +19,13 @@ Aplicação React para visualização, filtro e gerenciamento de usuários, util
 - [Estilo e Temas](#estilo-e-temas)
 - [Testes](#testes)
 - [Configuração de Lint e Prettier](#configuração-de-lint-e-prettier)
+- [Publicação](#publicação)
 
 ---
 
 ## Visão Geral
 
-Este projeto foi criado com [Create React App](https://github.com/facebook/create-react-app) e tem como objetivo listar usuários, permitir busca, favoritar e visualizar detalhes de cada usuário.
+Este projeto foi criado com [Create React App](https://github.com/facebook/create-react-app) e tem como objetivo listar usuários, permitir busca, favoritar e visualizar detalhes de cada usuário. O Storybook está disponível para documentação e visualização dos componentes.
 
 ## Instalação
 
@@ -30,6 +38,8 @@ yarn install
 - `yarn start` — Inicia o servidor de desenvolvimento.
 - `yarn build` — Gera o build de produção.
 - `yarn test` — Executa os testes.
+- `yarn storybook` — Inicia o Storybook local.
+- `yarn build-storybook` — Gera o build do Storybook.
 - `yarn eject` — Eject do Create React App.
 
 ## Estrutura de Pastas
@@ -40,7 +50,9 @@ src/
   pages/              // Páginas principais (Home, UserProfile)
   store/              // Redux, Sagas e Tipos
   styles/             // Temas e estilos globais
+  features/           // Funcionalidades extras (FavoriteButton, TranslateButton)
 public/               // Arquivos estáticos
+.storybook/           // Configuração do Storybook
 ```
 
 ## Principais Funcionalidades
@@ -50,6 +62,8 @@ public/               // Arquivos estáticos
 - **Favoritos:** Adição/remoção de usuários favoritos.
 - **Detalhes:** Visualização detalhada do usuário ([UserProfile](src/pages/UserProfile/index.tsx)).
 - **Persistência:** Estado gerenciado via Redux Toolkit e Redux-Saga.
+- **Internacionalização:** Suporte a múltiplos idiomas via i18n.
+- **Storybook:** Visualização e documentação dos componentes ([Storybook](https://user-view-storybook.vercel.app)).
 
 ## Estilo e Temas
 
@@ -66,6 +80,11 @@ public/               // Arquivos estáticos
 
 - ESLint configurado em [`.eslintrc.js`](.eslintrc.js).
 - Prettier configurado em [`.prettierrc`](.prettierrc).
+
+## Publicação
+
+- Deploy automático via GitHub Actions para Vercel.
+- Storybook publicado separadamente em ambiente próprio.
 
 ---
 

@@ -19,19 +19,6 @@ describe('Heading component', () => {
         expect(heading?.textContent).toBe('Custom Heading');
     });
 
-    it('accepts and applies styled-system props', () => {
-        const { getByText } = render(
-            <Heading color="red" fontSize="20px" m="16px">
-                Styled Heading
-            </Heading>
-        );
-        const heading = getByText('Styled Heading');
-
-        expect(heading).toHaveStyle(`color: red`);
-        expect(heading).toHaveStyle(`font-size: 20px`);
-        expect(heading).toHaveStyle(`margin: 16px`);
-    });
-
     it('renders children correctly', () => {
         const { getByText } = render(<Heading>Children Test</Heading>);
 

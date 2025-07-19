@@ -1,13 +1,12 @@
+// Link.stories.tsx
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { Link } from './';
 
-export default {
+const meta: Meta<typeof Link> = {
     title: 'Components/Link',
     component: Link,
+    tags: ['autodocs'],
     argTypes: {
-        variant: {
-            control: 'select',
-            options: ['primary', 'highlight'],
-        },
         size: {
             control: 'select',
             options: ['small', 'medium', 'large'],
@@ -17,17 +16,14 @@ export default {
     },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Template = (args: any) => (
-    <Link {...args} />
-);
+export default meta;
 
-export const Default = Template.bind({});
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
-Default.args = {
-    children: 'Link padrão',
-    href: '#',
-    variant: 'primary',
-    size: 'medium',
+type Story = StoryObj<typeof Link>;
+
+export const Default: Story = {
+    args: {
+        children: 'Link padrão',
+        href: '#',
+        size: 'medium',
+    },
 };

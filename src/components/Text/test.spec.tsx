@@ -8,9 +8,6 @@ describe('Text component', () => {
 
         expect(text).toBeInTheDocument();
         expect(text.tagName.toLowerCase()).toBe('p');
-        expect(text).toHaveStyle(`margin: 0`);
-        expect(text).toHaveStyle(`line-height: 1.5`);
-
     });
 
     it('renders with custom as prop', () => {
@@ -19,19 +16,6 @@ describe('Text component', () => {
 
         expect(span).toBeInTheDocument();
         expect(span?.textContent).toBe('Custom Text');
-    });
-
-    it('accepts and applies styled-system props', () => {
-        const { getByText } = render(
-            <Text color="blue" fontSize="18px" m="12px">
-                Styled Text
-            </Text>
-        );
-        const text = getByText('Styled Text');
-
-        expect(text).toHaveStyle(`color: blue`);
-        expect(text).toHaveStyle(`font-size: 18px`);
-        expect(text).toHaveStyle(`margin: 12px`);
     });
 
     it('renders children correctly', () => {

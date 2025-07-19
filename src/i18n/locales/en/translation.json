@@ -17,5 +17,6 @@
     "NAME": "Name",
     "PHRASE": "Phrase",
     "SECTOR": "Sector",
-    "BACK": "Back"
+    "BACK": "Back",
+    "NO_USERS_FOUND": "No users found" 
 }

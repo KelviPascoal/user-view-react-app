@@ -3,9 +3,9 @@ import { css, styled } from "styled-components";
 
 type ButtonVariant = 'primary' | 'secondary' | 'highlight';
 
-export interface ButtonProps {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
-  disabled?: boolean;
+  fullWidth?: boolean;
 }
 
 const variantStyles = {
@@ -46,7 +46,8 @@ const disabledStyles = css`
 `;
 
 export const Button = styled.button<ButtonProps>`
-  ${({ theme, variant, disabled }) => css`
+  ${({ theme, variant, disabled, fullWidth }) => css`
+    width: fit-content;
     font-size: ${theme.font.sizes.small};
     padding: ${`${theme.spacings.xxsmall} ${theme.spacings.xsmall}`};
     font-family: ${theme.font.family};
@@ -55,6 +56,10 @@ export const Button = styled.button<ButtonProps>`
     cursor: pointer;
     white-space: nowrap;
     transition: background-color 0.3s ease;
+    min-height: 36px;
+    height: 36px;
+    ${fullWidth && 'width: 100%;'}
+
 
     ${variantStyles[variant || 'primary']}
     ${disabled && disabledStyles}

@@ -17,5 +17,6 @@
     "NAME": "Nome",
     "PHRASE": "Frase",
     "SECTOR": "Setor",
-    "BACK": "Voltar"
+    "BACK": "Voltar",
+    "NO_USERS_FOUND": "Nenhum usuário encontrado" 
 }

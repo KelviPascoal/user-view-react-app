@@ -1,6 +1,8 @@
+// Input.stories.tsx
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { Input } from './';
 
-const meta = {
+const meta: Meta<typeof Input> = {
     title: 'Components/Input',
     component: Input,
     tags: ['autodocs'],
@@ -20,12 +22,49 @@ const meta = {
 
 export default meta;
 
-export const Playground = {
+type Story = StoryObj<typeof Input>;
+
+export const Default: Story = {
     args: {
-        placeholder: 'Digite algo...',
+        placeholder: 'Campo de entrada padrão',
         type: 'text',
         disabled: false,
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    render: (args: any) => <Input {...args} />,
+    render: (args) => <Input {...args} />,
+};
+
+export const Disabled: Story = {
+    args: {
+        placeholder: 'Campo desativado',
+        type: 'text',
+        disabled: true,
+    },
+    render: (args) => <Input {...args} />,
+};
+
+export const PasswordInput: Story = {
+    args: {
+        placeholder: 'Digite sua senha',
+        type: 'password',
+        disabled: false,
+    },
+    render: (args) => <Input {...args} />,
+};
+
+export const EmailInput: Story = {
+    args: {
+        placeholder: 'Digite seu email',
+        type: 'email',
+        disabled: false,
+    },
+    render: (args) => <Input {...args} />,
+};
+
+export const NumberInput: Story = {
+    args: {
+        placeholder: 'Digite um número',
+        type: 'number',
+        disabled: false,
+    },
+    render: (args) => <Input {...args} />,
 };

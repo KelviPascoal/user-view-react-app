@@ -1,29 +1,15 @@
 import styled, { css } from 'styled-components';
-import {
-    space,
-    color,
-    typography,
-    layout,
-    SpaceProps,
-    ColorProps,
-    TypographyProps,
-    LayoutProps,
-    compose,
-} from 'styled-system';
+
 import React from 'react';
 
 type Variant = 'primary' | 'highlight';
 type Size = 'small' | 'medium' | 'large';
-
-type HeadingProps = SpaceProps &
-    ColorProps &
-    TypographyProps &
-    LayoutProps & {
-        as?: React.ElementType;
-        children: React.ReactNode;
-        variant?: Variant;
-        size?: Size;
-    };
+export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+    as?: React.ElementType;
+    children: React.ReactNode;
+    variant?: Variant;
+    size?: Size;
+}
 
 const variantStyles = {
     primary: css`
@@ -46,7 +32,7 @@ const sizeStyles = {
     `,
 };
 
-export const Heading = styled.h3<HeadingProps>`
+export const Heading = styled.h2<HeadingProps>`
     ${({ theme, variant, size = 'medium', }) => css`
         margin: 0;
         font-family: ${theme.fonts.main};
@@ -55,6 +41,5 @@ export const Heading = styled.h3<HeadingProps>`
 
         ${variant && variantStyles[variant]}
         ${size !== null ? sizeStyles[size as Size] : sizeStyles.medium}
-        ${compose(space, color, typography, layout)};
     `}
 `;

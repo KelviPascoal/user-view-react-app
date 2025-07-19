@@ -1,11 +1,11 @@
 import { AppRouter } from './App.route';
-import { TranslateButton } from './features/TranslateButton';
+import { TranslateSelect } from './features/TranslateSelect';
 import { ENABLE_TRANSLATE_BUTTON } from './constants/env'
 function App() {
 
   return <>
+    {ENABLE_TRANSLATE_BUTTON && <TranslateSelect />}
     <AppRouter />
-    {ENABLE_TRANSLATE_BUTTON && <TranslateButton />}
   </>
 }
 

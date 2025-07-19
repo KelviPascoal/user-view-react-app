@@ -1,3 +1,11 @@
+const breakpoints = {
+    xs: '425px',
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px',
+}
+
 export const theme = {
 
     border: {
@@ -46,5 +54,15 @@ export const theme = {
     transition: {
         default: '0.3s ease-in-out',
         fast: '0.1s ease-in-out'
+    },
+
+    breakpoints,
+
+    mediaQueries: {
+        xs: `@media (min-width: ${breakpoints.xs})`,
+        sm: `@media (min-width: ${breakpoints.sm})`,
+        md: `@media (min-width: ${breakpoints.md})`,
+        lg: `@media (min-width: ${breakpoints.lg})`,
+        xl: `@media (min-width: ${breakpoints.xl})`,
     }
 }
