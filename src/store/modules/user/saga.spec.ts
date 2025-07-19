@@ -3,10 +3,10 @@ import axios from 'axios';
 import { expectSaga } from 'redux-saga-test-plan';
 import { throwError } from 'redux-saga-test-plan/providers';
 
-import { loadUsersSaga } from '../saga'; // ajuste o caminho se precisar
-import { loadUsersSuccess, loadUsersFailure } from '../actions';
-import { API_URL } from '../../../../constants/env';
-import { mockUsers } from '../__mock__/mockUsers';
+import { loadUsersSaga } from './saga'; // ajuste o caminho se precisar
+import { loadUsersSuccess, loadUsersFailure } from './actions';
+import { API_URL } from '../../../constants/env';
+import { mockUsers } from '../../../__mock__/mockUsers';
 
 describe('loadUsersSaga', () => {
     it('should call API and dispatch loadUsersSuccess action with data on success', () => {

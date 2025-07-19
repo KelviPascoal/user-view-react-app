@@ -63,6 +63,4 @@ ${({ gap, columnGap, rowGap, display }) => css`
   typography,
   background
 )}
-
-
 `;

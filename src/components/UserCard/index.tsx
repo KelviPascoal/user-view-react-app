@@ -1,7 +1,7 @@
 import React, { JSX } from "react";
 import { styled } from "styled-components";
 import { User } from "../../store/modules/user/types";
-import { Box } from "..";
+import { Box, Heading, Text } from "..";
 
 const Wrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.border};
@@ -33,9 +33,9 @@ export class UserCard extends React.Component<UserCardProps> {
         return (
             <Wrapper as={as || 'div'} key={user.id}>
                 <Box display="flex" flexDirection="column" gap="0.2rem">
-                    <strong>{user.name}</strong>
-                    <span>{user.email}</span>
-                    <span>{user.phone}</span>
+                    <Heading>{user.name}</Heading>
+                    <Text>{user.email}</Text>
+                    <Text>{user.phone}</Text>
                 </Box>
                 <Box display="flex" gap="1rem" margin="0.5rem 0 0 auto">
                     {sideItems}

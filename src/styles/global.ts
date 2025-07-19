@@ -25,16 +25,6 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: underline;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: ${({ theme }) => theme.fonts.heading};
-    margin-bottom: ${({ theme }) => theme.spacings.medium};
-    color: ${({ theme }) => theme.colors.primary};
-  }
-
-  p {
-    margin-bottom: ${({ theme }) => theme.spacings.medium};
-  }
-
   ul, li {
     list-style: none;
     margin: 0;
@@ -62,5 +52,9 @@ export const GlobalStyle = createGlobalStyle`
     @media (min-width: 768px) {
       font-size: 1.125rem;
     }
+  }
+
+  html {
+      font-size: 62.5%;
   }
 `;

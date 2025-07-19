@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -6,13 +6,15 @@ const spin = keyframes`
 `;
 
 const SpinnerBase = styled.div`
-  border: 4px solid ${({ theme }) => theme.colors.border};
-  border-top: 4px solid ${({ theme }) => theme.colors.primary};
+${({ theme }) => css`
+  border: 4px solid ${theme.colors.border};
+  border-top: 4px solid ${theme.colors.primary};
   border-radius: 50%;
   width: 40px;
   height: 40px;
   animation: ${spin} 1s linear infinite;
   margin: 2rem auto;
+`}
 `;
 
 export function Spinner() {

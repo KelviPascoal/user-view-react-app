@@ -1,7 +1,7 @@
-import usersReducer from '../reducer';
-import * as actions from '../actions';
-import { UsersState } from '../types';
-import { mockUsers } from '../__mock__/mockUsers';
+import usersReducer from './reducer';
+import * as actions from './actions';
+import { UsersState } from './types';
+import { mockUsers } from '../../../__mock__/mockUsers';
 
 const initialState: UsersState = {
     data: [],

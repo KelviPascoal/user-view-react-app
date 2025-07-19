@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { RootState } from '../../store';
-import { Container } from '../../components';
-import { Wrapper, Info, Message, Section, Subtitle, Title, } from './components';
+import { Box, Container, Heading, Text } from '../../components';
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state: RootState) => ({
@@ -13,49 +12,49 @@ const connector = connect(mapStateToProps);
 
 type Props = ConnectedProps<typeof connector>;
 
-class UserProfileComponent extends Component<Props> {
+class UserProfileComponent extends React.Component<Props> {
   render() {
     const { selectedUser: user } = this.props;
 
     if (!user) {
-      return <Message>Nenhum usuário selecionado.</Message>;
+      return <Text>Nenhum usuário selecionado.</Text>;
     }
 
     return (
       <Container>
-        <Wrapper>
+        <Box>
           <Link to="/">← Voltar</Link>
 
-          <Title>
+          <Heading as="h1" style={{ marginBottom: '16px' }}>
             {user.name} <small style={{ fontWeight: 'normal' }}>@{user.username}</small>
-          </Title>
+          </Heading>
 
-          <Section>
-            <Subtitle>Informações básicas</Subtitle>
-            <Info><strong>Email:</strong> {user.email}</Info>
-            <Info><strong>Telefone:</strong> {user.phone}</Info>
-            <Info>
+          <Box>
+            <Heading>Textrmações básicas</Heading>
+            <Text><strong>Email:</strong> {user.email}</Text>
+            <Text><strong>Telefone:</strong> {user.phone}</Text>
+            <Text>
               <strong>Website:</strong>{' '}
               <a href={`https://${user.website}`} target="_blank" rel="noopener noreferrer">
                 {user.website}
               </a>
-            </Info>
-          </Section>
+            </Text>
+          </Box>
 
-          <Section>
-            <Subtitle>Endereço</Subtitle>
-            <Info>{user.address.street}, {user.address.suite}</Info>
-            <Info>{user.address.city} - {user.address.zipcode}</Info>
-            <Info><strong>Geo:</strong> {user.address.geo.lat}, {user.address.geo.lng}</Info>
-          </Section>
+          <Box>
+            <Heading>Endereço</Heading>
+            <Text>{user.address.street}, {user.address.suite}</Text>
+            <Text>{user.address.city} - {user.address.zipcode}</Text>
+            <Text><strong>Geo:</strong> {user.address.geo.lat}, {user.address.geo.lng}</Text>
+          </Box>
 
-          <Section>
-            <Subtitle>Empresa</Subtitle>
-            <Info><strong>Nome:</strong> {user.company.name}</Info>
-            <Info><strong>Frase:</strong> {user.company.catchPhrase}</Info>
-            <Info><strong>Setor:</strong> {user.company.bs}</Info>
-          </Section>
-        </Wrapper>
+          <Box>
+            <Heading>Empresa</Heading>
+            <Text><strong>Nome:</strong> {user.company.name}</Text>
+            <Text><strong>Frase:</strong> {user.company.catchPhrase}</Text>
+            <Text><strong>Setor:</strong> {user.company.bs}</Text>
+          </Box>
+        </Box>
       </Container>
     );
   }

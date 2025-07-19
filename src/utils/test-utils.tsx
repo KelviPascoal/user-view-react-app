@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { Provider as ReduxProvider } from 'react-redux';
 import { store } from '../store';
 import { theme } from '../styles/theme';
+import '@testing-library/jest-dom';
 
 interface AllTheProvidersProps {
     children: ReactNode;

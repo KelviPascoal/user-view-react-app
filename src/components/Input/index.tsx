@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
@@ -21,6 +21,6 @@ ${({ theme, disabled }) => css`
 `}
 `
 
-export function Input({ disabled, ...rest }: InputProps) {
-    return <StyledInput disabled={disabled} {...rest} />;
+export function Input(props: InputProps) {
+  return <StyledInput {...props} />;
 };

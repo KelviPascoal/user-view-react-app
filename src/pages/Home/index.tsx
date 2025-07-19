@@ -22,13 +22,8 @@ export function Home() {
     const navigate = useNavigate();
 
     const { filtered, loading, favorites } = useSelector((state: RootState) => state.users);
-
     const [showOnlyFavorites, setShowOnlyFavorites] = React.useState(false);
     const [searchTerm, setSearchTerm] = React.useState('');
-
-    React.useEffect(() => {
-        dispatch(loadUsersRequest());
-    }, [dispatch]);
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
@@ -66,6 +61,10 @@ export function Home() {
     const checkIfFavorite = (user: User, favorites: User[]) => {
         return favorites.some(fav => fav.id === user.id);
     }
+
+    React.useEffect(() => {
+        dispatch(loadUsersRequest());
+    }, [dispatch]);
 
     React.useEffect(() => {
         if (!favorites.length) {

@@ -22,17 +22,23 @@ const variantStyles = {
   `
 };
 
+const disabledStyles = css`
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(50%);
+`;
+
 export const Button = styled.button<ButtonProps>`
 ${({ theme, variant, disabled }) => css`
-  padding: ${`${theme.spacings.xxxsmall} ${theme.spacings.xxsmall}`};
+  padding: ${`${theme.spacings.xxsmall} ${theme.spacings.xsmall}`};
   font-size: ${theme.font.sizes.small};
   font-family: ${theme.font.family};
   border: none;
   border-radius: ${theme.border.radius};
-  cursor: ${disabled ? 'not-allowed' : 'pointer'};
+  cursor: pointer;
   white-space: nowrap;
 
   ${variantStyles[variant || 'primary']}
+  ${disabled && disabledStyles}
 `}
-
 `;
