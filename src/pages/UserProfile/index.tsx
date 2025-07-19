@@ -2,8 +2,8 @@ import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { RootState } from '../../store';
 import { Box, Container, Heading, Text } from '../../components';
-import { Link } from 'react-router-dom';
-import { ButtonLink } from '../../components/Link';
+import { Link as RouterLink } from 'react-router-dom';
+import { Link } from '../../components/Link';
 import { useTranslation } from 'react-i18next';
 
 const mapStateToProps = (state: RootState) => ({
@@ -29,9 +29,9 @@ class UserProfileComponent extends React.Component<Props> {
     return (
       <Container>
         <Box>
-          <ButtonLink as={Link} to="/">
-            ← {t('BACK') || 'Voltar'}
-          </ButtonLink>
+          <Link as={RouterLink} to="/">
+            ← {t('BACK')}
+          </Link>
 
           <Box
             borderStyle="solid"

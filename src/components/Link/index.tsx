@@ -42,7 +42,7 @@ const sizeStyles = {
     `,
 };
 
-export const ButtonLink = styled.a<ButtonLinkProps>`
+export const Link = styled.a<ButtonLinkProps>`
     ${({ theme, size = 'medium' }) => css`
         display: inline-block;
         text-decoration: none;
@@ -63,7 +63,7 @@ export const ButtonLink = styled.a<ButtonLinkProps>`
     `}
 `;
 
-ButtonLink.defaultProps = {
+Link.defaultProps = {
     as: 'a',
     variant: 'primary',
     size: 'medium',
