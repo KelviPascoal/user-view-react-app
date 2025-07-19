@@ -1,2 +1,2 @@
 export * from './FavoriteButton'
-export * from './TranslateButton'
+export * from './TranslateSelect'

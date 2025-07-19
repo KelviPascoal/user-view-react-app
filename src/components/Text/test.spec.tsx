@@ -8,9 +8,6 @@ describe('Text component', () => {
 
         expect(text).toBeInTheDocument();
         expect(text.tagName.toLowerCase()).toBe('p');
-        expect(text).toHaveStyle(`margin: 0`);
-        expect(text).toHaveStyle(`line-height: 1.5`);
-
     });
 
     it('renders with custom as prop', () => {

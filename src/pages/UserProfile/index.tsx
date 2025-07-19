@@ -5,6 +5,7 @@ import { Box, Card, Container, Heading, Text } from '../../components';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '../../components/Link';
 import { useTranslation } from 'react-i18next';
+import { IoIosArrowBack } from "react-icons/io";
 
 const mapStateToProps = (state: RootState) => ({
   selectedUser: state.users.selectedUser,
@@ -29,9 +30,13 @@ class UserProfileComponent extends React.Component<Props> {
     return (
       <Container>
         <Box>
-          <Link as={RouterLink} to="/">
-            ← {t('BACK')}
-          </Link>
+          <Box display="flex" alignItems="center" gap="0.5rem" marginY={'1rem'}>
+            <Link as={RouterLink} to="/">
+              <Box display="flex" alignItems="center" gap="0.5rem">
+                <IoIosArrowBack /><Text>{t('BACK')}</Text>
+              </Box>
+            </Link>
+          </Box>
 
           <Card>
             <Box display="flex" alignItems="center" marginBottom="1rem" gap="0.5rem">

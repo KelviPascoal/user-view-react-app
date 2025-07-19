@@ -1,57 +1,41 @@
-import React from 'react';
+import React, { useRef, useSyncExternalStore } from 'react';
 import { Button } from '../../components/Button';
 import { useTranslation } from 'react-i18next';
-import styled from 'styled-components';
 
 interface FavoriteButtonProps {
     isFavorite?: boolean;
     onClick: () => void;
 }
 
-const SmoothContent = styled.span<{ visible: boolean }>`
-  display: inline-block;
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  transition: opacity 0.2s ease;
-`;
-
 export const FavoriteButton = ({
     isFavorite,
     onClick,
 }: FavoriteButtonProps) => {
     const { t } = useTranslation();
-    const [hovering, setHovering] = React.useState(false);
-    const [visible, setVisible] = React.useState(true);
-    const [label, setLabel] = React.useState(t('ADD_TO_FAVORITE'));
 
-    const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+    const hoverRef = useRef(false);
+    const subscribers = useRef<Set<() => void>>(new Set());
 
-    const computeLabel = () => {
-        if (!isFavorite) return t('ADD_TO_FAVORITE');
+    const subscribe = (callback: () => void) => {
+        subscribers.current.add(callback);
 
-        return hovering ? t('REMOVE_FROM_FAVORITE') : t('FAVORITE');
+        return () => subscribers.current.delete(callback);
     };
 
-    const newLabel = computeLabel();
+    const getSnapshot = () => hoverRef.current;
 
-    React.useEffect(() => {
-        if (newLabel === label) return;
+    const hovering = useSyncExternalStore(subscribe, getSnapshot);
 
-        // Inicia transição
-        setVisible(false);
+    const setHovering = (value: boolean) => {
+        hoverRef.current = value;
+        subscribers.current.forEach(cb => cb());
+    };
 
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
-
-        timeoutRef.current = setTimeout(() => {
-            setLabel(newLabel);
-            setVisible(true);
-        }, 200);
-    }, [label, newLabel]);
-
-    React.useEffect(() => {
-        return () => {
-            if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        };
-    }, []);
+    const label = !isFavorite
+        ? t('ADD_TO_FAVORITE')
+        : hovering
+            ? t('REMOVE_FROM_FAVORITE')
+            : t('FAVORITE');
 
     return (
         <Button
@@ -60,7 +44,7 @@ export const FavoriteButton = ({
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
         >
-            <SmoothContent visible={visible}>{label}</SmoothContent>
+            {label}
         </Button>
     );
 };

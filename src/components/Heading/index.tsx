@@ -9,14 +9,6 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
     children: React.ReactNode;
     variant?: Variant;
     size?: Size;
-    margin?: string;
-    padding?: string;
-    color?: string;
-    fontSize?: string;
-    fontWeight?: string;
-    textAlign?: string;
-    width?: string;
-    height?: string;
 }
 
 const variantStyles = {
