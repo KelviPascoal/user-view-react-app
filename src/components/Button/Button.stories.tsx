@@ -4,14 +4,19 @@ import { Button, ButtonProps } from './';
 const meta: Meta<ButtonProps> = {
     title: 'Components/Button',
     component: Button,
-    tags: ['autodocs'],
     argTypes: {
         variant: {
             control: 'radio',
             options: ['primary', 'secondary', 'highlight'],
         },
+        fullWidth: {
+            control: 'boolean',
+        },
         disabled: {
             control: 'boolean',
+        },
+        children: {
+            control: 'text',
         },
     },
 };
