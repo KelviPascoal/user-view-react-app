@@ -46,8 +46,8 @@ const sizeStyles = {
     `,
 };
 
-export const Heading = styled.h1<HeadingProps>`
-    ${({ theme, variant, size = 'medium' }) => css`
+export const Heading = styled.h3<HeadingProps>`
+    ${({ theme, variant, size = 'medium', }) => css`
         margin: 0;
         font-family: ${theme.fonts.main};
         font-weight: ${theme.font.bold};
@@ -58,8 +58,3 @@ export const Heading = styled.h1<HeadingProps>`
         ${compose(space, color, typography, layout)};
     `}
 `;
-
-Heading.defaultProps = {
-    as: 'h3',
-    fontSize: 'medium',
-};

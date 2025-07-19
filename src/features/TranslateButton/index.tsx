@@ -21,7 +21,7 @@ export function TranslateButton() {
 
     return (
         <Wrapper>
-            <Button onClick={() => toggleLanguage()}>
+            <Button variant='secondary' onClick={() => toggleLanguage()}>
                 {isEnglish ? 'Traduzir para o portugues' : 'Traduzir para o inglês'}
             </Button>
         </Wrapper>
