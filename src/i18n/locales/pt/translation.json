@@ -5,5 +5,17 @@
     "REMOVE_FROM_FAVORITE": "Remover dos favoritos",
     "FILTER_BY_FAVORITE": "Filtrar por favoritos",
     "BACK_TO_FULL_LIST": "Voltar à lista completa",
-    "DETAILS": "Detalhes"
+    "DETAILS": "Detalhes",
+
+    "BASIC_INFORMATION": "Informações básicas",
+    "EMAIL": "Email",
+    "PHONE": "Telefone",
+    "WEBSITE": "Website",
+    "ADDRESS": "Endereço",
+    "GEO": "Geo",
+    "COMPANY": "Empresa",
+    "NAME": "Nome",
+    "PHRASE": "Frase",
+    "SECTOR": "Setor",
+    "BACK": "Voltar"
 }

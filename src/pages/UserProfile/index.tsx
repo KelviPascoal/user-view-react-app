@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { RootState } from '../../store';
-import { Container, BackLink } from '../../components';
-import { Wrapper, Info, Message, Section, Subtitle, Title, } from './components';
+import { Box, Container, Heading, Text } from '../../components';
+import { Link as RouterLink } from 'react-router-dom';
+import { Link } from '../../components/Link';
+import { useTranslation } from 'react-i18next';
 
 const mapStateToProps = (state: RootState) => ({
   selectedUser: state.users.selectedUser,
@@ -10,54 +12,100 @@ const mapStateToProps = (state: RootState) => ({
 
 const connector = connect(mapStateToProps);
 
-type Props = ConnectedProps<typeof connector>;
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
-class UserProfileComponent extends Component<Props> {
+interface Props extends PropsFromRedux {
+  t: (key: string) => string;
+}
+
+class UserProfileComponent extends React.Component<Props> {
   render() {
-    const { selectedUser: user } = this.props;
+    const { selectedUser: user, t } = this.props;
 
     if (!user) {
-      return <Message>Nenhum usuário selecionado.</Message>;
+      return <Text>{t('NO_USER_SELECTED') || 'Nenhum usuário selecionado.'}</Text>;
     }
 
     return (
       <Container>
-        <Wrapper>
-          <BackLink to="/">← Voltar</BackLink>
+        <Box>
+          <Link as={RouterLink} to="/">
+            ← {t('BACK')}
+          </Link>
 
-          <Title>
-            {user.name} <small style={{ fontWeight: 'normal' }}>@{user.username}</small>
-          </Title>
+          <Box
+            borderStyle="solid"
+            borderWidth="0.5px"
+            borderRadius="md"
+            marginTop="1rem"
+            background="white"
+            p={4}
+            backgroundImage="linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('/profile-decoration.png')"
+            backgroundPosition="right center"
+            backgroundRepeat="no-repeat"
+            backgroundSize="contain"
+          >
+            <Box display="flex" alignItems="center" marginBottom="1rem" gap="0.5rem">
+              <Heading variant="primary" size="large">
+                {user.name}
+              </Heading>
+              <Text variant="highlight">
+                <strong>@{user.username}</strong>
+              </Text>
+            </Box>
 
-          <Section>
-            <Subtitle>Informações básicas</Subtitle>
-            <Info><strong>Email:</strong> {user.email}</Info>
-            <Info><strong>Telefone:</strong> {user.phone}</Info>
-            <Info>
-              <strong>Website:</strong>{' '}
-              <a href={`https://${user.website}`} target="_blank" rel="noopener noreferrer">
-                {user.website}
-              </a>
-            </Info>
-          </Section>
+            <Box>
+              <Heading >{t('BASIC_INFORMATION')}</Heading>
+              <Text>
+                <strong>{t('EMAIL')}:</strong> {user.email}
+              </Text>
+              <Text>
+                <strong>{t('PHONE')}:</strong> {user.phone}
+              </Text>
+              <Text>
+                <strong>{t('WEBSITE')}:</strong>{' '}
+                <a href={`https://${user.website}`} target="_blank" rel="noopener noreferrer">
+                  {user.website}
+                </a>
+              </Text>
+            </Box>
 
-          <Section>
-            <Subtitle>Endereço</Subtitle>
-            <Info>{user.address.street}, {user.address.suite}</Info>
-            <Info>{user.address.city} - {user.address.zipcode}</Info>
-            <Info><strong>Geo:</strong> {user.address.geo.lat}, {user.address.geo.lng}</Info>
-          </Section>
+            <Box>
+              <Heading>{t('ADDRESS')}</Heading>
+              <Text>
+                {user.address.street}, {user.address.suite}
+              </Text>
+              <Text>
+                {user.address.city} - {user.address.zipcode}
+              </Text>
+              <Text>
+                <strong>{t('GEO')}:</strong> {user.address.geo.lat}, {user.address.geo.lng}
+              </Text>
+            </Box>
 
-          <Section>
-            <Subtitle>Empresa</Subtitle>
-            <Info><strong>Nome:</strong> {user.company.name}</Info>
-            <Info><strong>Frase:</strong> {user.company.catchPhrase}</Info>
-            <Info><strong>Setor:</strong> {user.company.bs}</Info>
-          </Section>
-        </Wrapper>
+            <Box>
+              <Heading>{t('COMPANY')}</Heading>
+              <Text>
+                <strong>{t('NAME')}:</strong> {user.company.name}
+              </Text>
+              <Text>
+                <strong>{t('PHRASE')}:</strong> {user.company.catchPhrase}
+              </Text>
+              <Text>
+                <strong>{t('SECTOR')}:</strong> {user.company.bs}
+              </Text>
+            </Box>
+          </Box>
+        </Box>
       </Container>
     );
   }
 }
 
-export const UserProfile = connector(UserProfileComponent);
+const UserProfileWrapper = (props: PropsFromRedux) => {
+  const { t } = useTranslation();
+
+  return <UserProfileComponent {...props} t={t} />;
+};
+
+export const UserProfile = connector(UserProfileWrapper);

@@ -1,6 +1,0 @@
-export * from './Info'
-export * from './Message'
-export * from './Section'
-export * from './Subtitle'
-export * from './Title'
-export * from './Wrapper'

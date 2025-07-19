@@ -1,24 +1,9 @@
 // styled.d.ts
 import 'styled-components';
+import { theme } from './theme'
 
+type ThemeProps = typeof theme
 declare module 'styled-components' {
-    export interface DefaultTheme {
-        colors: {
-            primary: string;
-            accent: string;
-            background: string;
-            text: string;
-            border: string;
-            highlight: string;
-        };
-        fonts: {
-            main: string;
-            heading: string;
-        };
-        spacing: {
-            small: string;
-            medium: string;
-            large: string;
-        };
-    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+    export interface DefaultTheme extends ThemeProps { }
 }
