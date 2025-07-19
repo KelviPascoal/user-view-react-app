@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { Button as BaseButton } from "../Button";
 import styled from 'styled-components';
+import { Button } from '../../components/Button';
 
-const Button = styled(BaseButton)`
+const Wrapper = styled.div`
     position: fixed;
     right: 0;
     bottom: 2rem;
@@ -20,8 +20,10 @@ export function TranslateButton() {
     };
 
     return (
-        <Button onClick={() => toggleLanguage()}>
-            {isEnglish ? 'Traduzir para o portugues' : 'Traduzir para o inglês'}
-        </Button>
+        <Wrapper>
+            <Button onClick={() => toggleLanguage()}>
+                {isEnglish ? 'Traduzir para o portugues' : 'Traduzir para o inglês'}
+            </Button>
+        </Wrapper>
     )
 }

@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   html, body {
     font-family: ${({ theme }) => theme.fonts.main};
     background-color: ${({ theme }) => theme.colors.background};
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.black};
     line-height: 1.6;
     min-height: 100%;
     -webkit-font-smoothing: antialiased;
@@ -27,12 +27,12 @@ export const GlobalStyle = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6 {
     font-family: ${({ theme }) => theme.fonts.heading};
-    margin-bottom: ${({ theme }) => theme.spacing.medium};
+    margin-bottom: ${({ theme }) => theme.spacings.medium};
     color: ${({ theme }) => theme.colors.primary};
   }
 
   p {
-    margin-bottom: ${({ theme }) => theme.spacing.medium};
+    margin-bottom: ${({ theme }) => theme.spacings.medium};
   }
 
   ul, li {

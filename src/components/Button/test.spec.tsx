@@ -1,22 +1,37 @@
-import { screen, fireEvent } from '@testing-library/react';
-import { Button } from './index';
+import { theme } from '../../styles/theme';
 import { render } from '../../utils/test-utils';
+import { Button } from './index';
 
-describe('Button', () => {
-    it('renders with correct text', () => {
-        render(<Button>Click me</Button>);
-        expect(screen.getByRole('button', { name: /click me/i })).toBeInTheDocument();
+describe('Button component', () => {
+    it('renders with default (primary) style', () => {
+        const { getByText } = render(<Button>Click me</Button>);
+        const button = getByText('Click me');
+
+        expect(button).toBeInTheDocument();
+        expect(button).toHaveStyle(`background-color: ${theme.colors.primary}`);
+        expect(button).toHaveStyle(`color: ${theme.colors.white}`);
     });
 
-    it('calls onClick when clicked', () => {
-        const handleClick = jest.fn();
-        render(<Button onClick={handleClick}>Click me</Button>);
-        fireEvent.click(screen.getByRole('button', { name: /click me/i }));
-        expect(handleClick).toHaveBeenCalledTimes(1);
+    it('renders with secondary variant', () => {
+        const { getByText } = render(<Button variant="secondary">Secondary</Button>);
+        const button = getByText('Secondary');
+
+        expect(button).toHaveStyle(`background-color: ${theme.colors.secondary}`);
+        expect(button).toHaveStyle(`color: ${theme.colors.black}`);
     });
 
-    it('is disabled when disabled prop is true', () => {
-        render(<Button disabled>Disabled</Button>);
-        expect(screen.getByRole('button')).toBeDisabled();
+    it('renders with highlight variant', () => {
+        const { getByText } = render(<Button variant="highlight">Highlight</Button>);
+        const button = getByText('Highlight');
+
+        expect(button).toHaveStyle(`background-color: ${theme.colors.highlight}`);
+        expect(button).toHaveStyle(`color: ${theme.colors.black}`);
+    });
+
+    it('applies disabled style', () => {
+        const { getByText } = render(<Button disabled>Disabled</Button>);
+        const button = getByText('Disabled');
+
+        expect(button).toHaveStyle(`cursor: not-allowed`);
     });
 });

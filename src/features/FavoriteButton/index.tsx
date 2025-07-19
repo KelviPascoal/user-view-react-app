@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Button } from '../../../../components/Button';
+import { Button } from '../../components/Button';
 import { useTranslation } from 'react-i18next';
 
 interface FavoriteButtonProps {
@@ -22,21 +21,13 @@ export const FavoriteButton = ({
             : t('FAVORITE');
 
     return (
-        <ButtonBase
-            isFavorite={isFavorite}
+        <Button
+            variant={isFavorite ? 'highlight' : 'secondary'}
             onClick={onClick}
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
         >
             {label}
-        </ButtonBase>
+        </Button>
     );
 };
-
-const ButtonBase = styled(Button) <{ isFavorite?: boolean }>`
-  color: #fff;
-  background-color: ${({ isFavorite, theme }) =>
-        isFavorite ? theme.colors.highlight : theme.colors.primary};
-
-  transition: background-color 0.2s, color 0.2s;
-`;

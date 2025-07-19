@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { RootState } from '../../store';
-import { Container, BackLink } from '../../components';
+import { Container } from '../../components';
 import { Wrapper, Info, Message, Section, Subtitle, Title, } from './components';
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state: RootState) => ({
   selectedUser: state.users.selectedUser,
@@ -23,7 +24,7 @@ class UserProfileComponent extends Component<Props> {
     return (
       <Container>
         <Wrapper>
-          <BackLink to="/">← Voltar</BackLink>
+          <Link to="/">← Voltar</Link>
 
           <Title>
             {user.name} <small style={{ fontWeight: 'normal' }}>@{user.username}</small>

@@ -5,7 +5,7 @@ const spin = keyframes`
   100% { transform: rotate(360deg); }
 `;
 
-const Spinner = styled.div`
+const SpinnerBase = styled.div`
   border: 4px solid ${({ theme }) => theme.colors.border};
   border-top: 4px solid ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
@@ -15,6 +15,6 @@ const Spinner = styled.div`
   margin: 2rem auto;
 `;
 
-export function Loader() {
-  return <Spinner data-testid="spinner" />;
+export function Spinner() {
+  return <SpinnerBase data-testid="spinner" />;
 }

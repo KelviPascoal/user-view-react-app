@@ -10,9 +10,11 @@ import {
 import { RootState } from '../../store/rootReducer';
 import { User } from '../../store/modules/user/types';
 import { useNavigate } from 'react-router-dom';
-import { Loader, Container, Flex, Button } from '../../components';
-import { SearchInput, UserCard } from './components';
+import { Spinner, Container, Box, Button } from '../../components';
+import { UserCard } from '../../components';
 import { useTranslation } from 'react-i18next';
+import { Input } from '../../components/Input';
+import { FavoriteButton } from '../../features';
 
 export function Home() {
     const { t } = useTranslation();
@@ -53,13 +55,6 @@ export function Home() {
         }
     };
 
-    React.useEffect(() => {
-        if (!favorites.length) {
-            setShowOnlyFavorites(false);
-        }
-    }, [favorites]);
-
-    // Lista filtrada de acordo com searchTerm e favoritos
     const filteredList = React.useMemo(() => {
         const baseList = showOnlyFavorites ? favorites : filtered;
 
@@ -68,30 +63,46 @@ export function Home() {
         );
     }, [searchTerm, showOnlyFavorites, filtered, favorites]);
 
+    const checkIfFavorite = (user: User, favorites: User[]) => {
+        return favorites.some(fav => fav.id === user.id);
+    }
+
+    React.useEffect(() => {
+        if (!favorites.length) {
+            setShowOnlyFavorites(false);
+        }
+    }, [favorites]);
+
     return (
         <Container as="main">
-            <Flex alignItens='center' justify-content="space-between" gap="1rem" margin="0 0 1rem 0">
-                <SearchInput handleSearch={handleSearch} />
+            <Box display="flex" alignItems='center' justify-content="space-between" gap="1rem" margin="0 0 1rem 0">
+                <Input onChange={handleSearch} placeholder='Buscar por nome' />
                 <Button onClick={filtredUsersFavorites} disabled={!favorites.length}>
                     {!showOnlyFavorites ? t('FILTER_BY_FAVORITE') : t('BACK_TO_FULL_LIST')}
                 </Button>
-            </Flex>
+            </Box>
 
             {loading ? (
-                <Loader />
+                <Spinner />
             ) : (
-                <Flex as="ul" direction="column" gap="1rem">
+                <Box as="ul" display="flex" flexDirection="column" gap="1rem">
                     {filteredList.map((user) => (
                         <UserCard
-                            buttonDetailsText={t('DETAILS')}
+                            as="li"
                             key={user.id}
                             user={user}
-                            handleSelectUser={() => handleSelectUser(user)}
-                            handleAddFavorite={() => handleAddFavorite(user, favorites.some((fav) => fav.id === user.id))}
-                            isFavorite={favorites.some((fav) => fav.id === user.id)}
+                            sideItems={
+                                <>
+                                    <Button onClick={() => handleSelectUser(user)}>{t('DETAILS')}</Button>
+                                    <FavoriteButton
+                                        onClick={() => handleAddFavorite(user, checkIfFavorite(user, favorites))}
+                                        isFavorite={checkIfFavorite(user, favorites)}
+                                    />
+                                </>
+                            }
                         />
                     ))}
-                </Flex>
+                </Box>
             )}
         </Container>
     );
