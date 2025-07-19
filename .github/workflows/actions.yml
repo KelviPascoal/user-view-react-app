@@ -40,9 +40,35 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Deploy to Vercel
+      - name: Deploy App to Vercel
         run: |
           yarn global add vercel
           vercel --prod --token=$VERCEL_TOKEN --yes
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+  deploy-storybook:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'master'
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build Storybook
+        run: yarn build-storybook
+
+      - name: Deploy Storybook to Vercel
+        run: |
+          yarn global add vercel
+          vercel --prod --token=$VERCEL_TOKEN --yes --confirm --cwd ./storybook-static
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
