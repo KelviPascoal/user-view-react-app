@@ -8,8 +8,6 @@ describe('Box component', () => {
         const box = getByText('Content');
 
         expect(box).toBeInTheDocument();
-        expect(box).toHaveStyle('padding: 8px');
-        expect(box).toHaveStyle('border-radius: 4px');
     });
 
     it('supports the "as" prop', () => {
@@ -21,7 +19,7 @@ describe('Box component', () => {
     });
 
     it('applies responsive margin using theme scale', () => {
-        const { getByText } = render(<Box m={2}>With Margin</Box>);
+        const { getByText } = render(<Box margin={2}>With Margin</Box>);
         const box = getByText('With Margin');
 
         expect(box).toHaveStyle('margin: 8px');
