@@ -24,7 +24,20 @@ class UserProfileComponent extends React.Component<Props> {
     const { selectedUser: user, t } = this.props;
 
     if (!user) {
-      return <Text>{t('NO_USER_SELECTED') || 'Nenhum usuário selecionado.'}</Text>;
+      return (
+        <Container>
+          <Box display="flex" alignItems="center" gap="0.5rem" marginY={'1rem'}>
+            <Link as={RouterLink} to="/">
+              <Box display="flex" alignItems="center" gap="0.5rem">
+                <IoIosArrowBack /><Text>{t('BACK')}</Text>
+              </Box>
+            </Link>
+          </Box>
+          <Box display="flex" flexDirection="column" alignItems="center" gap="16px">
+            <Text>{t('NO_USERS_FOUND') || 'Nenhum usuário selecionado.'}</Text>;
+          </Box>
+        </Container>
+      )
     }
 
     return (
