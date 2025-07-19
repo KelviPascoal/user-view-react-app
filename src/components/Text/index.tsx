@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
     space,
     color,
@@ -12,21 +12,50 @@ import {
 } from 'styled-system';
 import React from 'react';
 
+type Variant = 'primary' | 'highlight';
+type Size = 'small' | 'medium' | 'large';
+
 type TextProps = SpaceProps &
     ColorProps &
     TypographyProps &
     LayoutProps & {
         as?: React.ElementType;
         children: React.ReactNode;
+        variant?: Variant;
     };
 
-export const Text = styled.p<TextProps>`
-  margin: 0;
-  font-family: ${({ theme }) => theme.font.family};
-  font-size: ${({ theme }) => theme.font.sizes.medium};
-  line-height: 1.5;
+const variantStyles = {
+    primary: css`
+        color: ${({ theme }) => theme.colors.primary};
+    `,
+    highlight: css`
+        color: ${({ theme }) => theme.colors.highlight};
+    `,
+};
 
-  ${compose(space, color, typography, layout)};
+const sizeStyles = {
+    small: css`
+        font-size: ${({ theme }) => theme.font.sizes.xsmall};
+    `,
+    medium: css`
+        font-size: ${({ theme }) => theme.font.sizes.small};
+    `,
+    large: css`
+        font-size: ${({ theme }) => theme.font.sizes.xxlarge};
+    `,
+};
+
+export const Text = styled.p<TextProps>`
+    ${({ theme, variant, size = 'medium' }) => css`
+    margin: 0;
+    font-family: ${theme.font.family};
+    font-size: ${theme.font.sizes.medium};
+    line-height: 1.5;
+    ${variant && variantStyles[variant]}
+    ${size !== null ? sizeStyles[size as Size] : sizeStyles.medium}
+    
+    ${compose(space, color, typography, layout)};
+`}
 `;
 
 Text.defaultProps = {

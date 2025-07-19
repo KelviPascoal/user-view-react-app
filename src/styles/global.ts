@@ -33,26 +33,6 @@ export const GlobalStyle = createGlobalStyle`
     margin-left: 0;
   }
 
-  h1 {
-  font-size: 1.8rem;
-  @media (min-width: 768px) {
-    font-size: 2.5rem;
-    }
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    @media (min-width: 768px) {
-      font-size: 2rem;
-    }
-  }
-
-  p {
-    font-size: 1rem;
-    @media (min-width: 768px) {
-      font-size: 1.125rem;
-    }
-  }
 
   html {
       font-size: 62.5%;

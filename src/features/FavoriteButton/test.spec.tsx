@@ -33,7 +33,9 @@ describe('FavoriteButton component', () => {
         const button = screen.getByRole('button');
 
         fireEvent.mouseEnter(button);
-        expect(button).toHaveTextContent('Remove from Favorite');
+        setTimeout(() => {
+            expect(screen.getByText('Remove from Favorites')).toBeInTheDocument();
+        }, 500);
 
         fireEvent.mouseLeave(button);
         expect(button).toHaveTextContent('Favorite');

@@ -20,12 +20,12 @@ export const theme = {
         }
     },
     colors: {
-        primary: '#102A4E',
+        primary: '#022340',
         secondary: '#F0F0F0',
-        accent: '#B22234',
-        background: '#FFFFFF',
+        accent: '#BF0F3E',
+        background: '#F2F2F2',
         border: '#E0E0E0',
-        highlight: '#bf9f59',
+        highlight: '#BF9D5E',
         white: '#FAFAFA',
         black: '#333333',
     },
