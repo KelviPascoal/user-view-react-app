@@ -14,13 +14,31 @@ const initialState: UsersState = {
 export default function usersReducer(state = initialState, action: any): UsersState {
     switch (action.type) {
         case actions.LOAD_USERS_REQUEST:
+        case actions.LOAD_USER_REQUEST:
             return { ...state, loading: true, error: null };
 
         case actions.LOAD_USERS_SUCCESS:
-            return { ...state, loading: false, data: action.payload, filtered: action.payload };
+            return {
+                ...state,
+                loading: false,
+                data: action.payload,
+                filtered: action.payload,
+            };
+
+        case actions.LOAD_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                selectedUser: action.payload,
+            };
 
         case actions.LOAD_USERS_FAILURE:
-            return { ...state, loading: false, error: action.payload };
+        case actions.LOAD_USER_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
 
         case actions.SET_SELECTED_USER:
             return { ...state, selectedUser: action.payload };
