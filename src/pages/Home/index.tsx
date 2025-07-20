@@ -36,13 +36,13 @@ export function Home() {
         navigate('/user-profile');
     }, [dispatch, navigate]);
 
-    const handleAddFavorite = React.useCallback((user: User, isFavorite: boolean) => {
+    const handleAddFavorite = (user: User, isFavorite: boolean) => {
         if (!isFavorite) {
             dispatch(addFavorite(user));
         } else {
             dispatch(removeFavorite(user.id));
         }
-    }, [dispatch]);
+    }
 
     const filtredUsersFavorites = () => {
         setShowOnlyFavorites(prev => !prev);

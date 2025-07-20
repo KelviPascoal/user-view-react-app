@@ -36,6 +36,7 @@ export const theme = {
         highlight: '#BF9D5E',
         white: '#FAFAFA',
         black: '#333333',
+        error: '#F44336'
     },
     fonts: {
         main: '"Helvetica Neue", Helvetica, Arial, sans-serif',
