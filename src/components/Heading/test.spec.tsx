@@ -1,5 +1,7 @@
 import { Heading } from ".";
+import { theme } from "../../styles/theme";
 import { render } from "../../utils/test-utils";
+import type { HeadingSize, HeadingVariant } from "./";
 
 describe('Heading component', () => {
     it('renders with default props', () => {
@@ -23,5 +25,45 @@ describe('Heading component', () => {
         const { getByText } = render(<Heading>Children Test</Heading>);
 
         expect(getByText('Children Test')).toBeInTheDocument();
+    });
+
+    it('passes extra props', () => {
+        const { getByTestId } = render(
+            <Heading data-testid="heading-test">Extra Props</Heading>
+        );
+
+        expect(getByTestId('heading-test')).toBeInTheDocument();
+    });
+
+    it('applies all variants', () => {
+        const variants: HeadingVariant[] = ['primary', 'highlight'];
+
+        variants.forEach(variant => {
+            const { getByText } = render(
+                <Heading variant={variant}>Variant {variant}</Heading>
+            );
+            const heading = getByText(`Variant ${variant}`);
+
+            expect(heading).toBeInTheDocument();
+
+            if (variant === 'primary') expect(heading).toHaveStyle(`color: ${theme.colors.primary}`);
+            if (variant === 'highlight') expect(heading).toHaveStyle(`color: ${theme.colors.highlight}`);
+        });
+    });
+    it('applies all sizes', () => {
+        const sizes: HeadingSize[] = ['small', 'medium', 'large'];
+
+        sizes.forEach(size => {
+            const { getByText } = render(
+                <Heading size={size}>Size {size}</Heading>
+            );
+            const heading = getByText(`Size ${size}`);
+
+            expect(heading).toBeInTheDocument();
+
+            if (size === 'small') expect(heading).toHaveStyle(`font-size: ${theme.font.sizes.xsmall}`);
+            if (size === 'medium') expect(heading).toHaveStyle(`font-size: ${theme.font.sizes.small}`);
+            if (size === 'large') expect(heading).toHaveStyle(`font-size: ${theme.font.sizes.xxlarge}`);
+        });
     });
 });

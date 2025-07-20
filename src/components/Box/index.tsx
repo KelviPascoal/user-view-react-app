@@ -3,9 +3,9 @@ import styled, { css } from 'styled-components';
 type Space = number | string;
 
 type ResponsiveProp<T> = T | T[] | { [key: string]: T };
-type Display = ResponsiveProp<React.CSSProperties['display']>;
-type FlexDirection = ResponsiveProp<React.CSSProperties['flexDirection']>;
-type AlignItems = ResponsiveProp<React.CSSProperties['alignItems']>;
+type DisplayProps = ResponsiveProp<React.CSSProperties['display']>;
+type FlexDirectionProps = ResponsiveProp<React.CSSProperties['flexDirection']>;
+type AlignItemsProps = ResponsiveProp<React.CSSProperties['alignItems']>;
 
 export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   as?: React.ElementType;
@@ -37,14 +37,14 @@ export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   maxHeight?: Space;
 
   // Display
-  display?: Display;
+  display?: DisplayProps;
   gap?: Space;
 
   // Flexbox
-  flexDirection?: FlexDirection;
+  flexDirection?: FlexDirectionProps;
   flexWrap?: React.CSSProperties['flexWrap'];
   justifyContent?: React.CSSProperties['justifyContent'];
-  alignItems?: AlignItems;
+  alignItems?: AlignItemsProps;
   alignContent?: React.CSSProperties['alignContent'];
   flex?: React.CSSProperties['flex'];
   flexGrow?: React.CSSProperties['flexGrow'];
@@ -77,7 +77,7 @@ type ResponsiveObject = { [key: string]: ResponsiveValue };
 
 export const getResponsiveCss = (
   propName: string,
-  value: ResponsiveValue | ResponsiveObject | Display | FlexDirection | AlignItems,
+  value: ResponsiveValue | ResponsiveObject | DisplayProps | FlexDirectionProps | AlignItemsProps,
   theme: DefaultTheme
 ): string => {
   if (!value) return '';

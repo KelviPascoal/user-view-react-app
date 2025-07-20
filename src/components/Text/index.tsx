@@ -1,14 +1,14 @@
 import styled, { css } from 'styled-components';
 import React from 'react';
 
-type Variant = 'primary' | 'highlight';
-type Size = 'small' | 'medium' | 'large';
+export type TextVariant = 'primary' | 'highlight';
+export type TextSize = 'small' | 'medium' | 'large';
 
 export interface TextProps extends React.HTMLAttributes<HTMLElement> {
   as?: React.ElementType;
   children: React.ReactNode;
-  variant?: Variant;
-  size?: Size;
+  variant?: TextVariant;
+  size?: TextSize;
 }
 
 const variantStyles = {
@@ -28,11 +28,11 @@ const sizeStyles = {
     font-size: ${({ theme }) => theme.font.sizes.small};
   `,
   large: css`
-    font-size: ${({ theme }) => theme.font.sizes.xxlarge};
+    font-size: ${({ theme }) => theme.font.sizes.large};
   `,
 };
 
-export const Text = styled.p<TextProps>`
+export const Text = styled.span<TextProps>`
   ${({ variant, size = 'medium' }) => css`
 
 

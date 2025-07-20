@@ -23,4 +23,30 @@ describe('Input component', () => {
         expect(input).toHaveStyle(`background-color: ${theme.colors.secondary}`);
         expect(input).toHaveStyle(`color: ${theme.colors.border}`);
     });
+    it('renders with custom className and passes extra props', () => {
+        const { getByRole } = render(
+            <Input className="my-input" data-testid="input-test" />
+        );
+        const input = getByRole('textbox');
+
+        expect(input).toHaveClass('my-input');
+        expect(input).toHaveAttribute('data-testid', 'input-test');
+    });
+
+    it('renders with custom type', () => {
+        const { getByPlaceholderText } = render(
+            <Input type="password" placeholder="Senha" />
+        );
+        const input = getByPlaceholderText('Senha');
+
+        expect(input).toHaveAttribute('type', 'password');
+    });
+
+    it('renders with custom placeholder', () => {
+        const { getByPlaceholderText } = render(
+            <Input placeholder="Digite aqui" />
+        );
+
+        expect(getByPlaceholderText('Digite aqui')).toBeInTheDocument();
+    });
 });

@@ -2,13 +2,13 @@ import styled, { css } from 'styled-components';
 
 import React from 'react';
 
-type Variant = 'primary' | 'highlight';
-type Size = 'small' | 'medium' | 'large';
+export type HeadingVariant = 'primary' | 'highlight';
+export type HeadingSize = 'small' | 'medium' | 'large';
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
     as?: React.ElementType;
     children: React.ReactNode;
-    variant?: Variant;
-    size?: Size;
+    variant?: HeadingVariant;
+    size?: HeadingSize;
 }
 
 const variantStyles = {
@@ -40,6 +40,6 @@ export const Heading = styled.h2<HeadingProps>`
         line-height: 1.2;
 
         ${variant && variantStyles[variant]}
-        ${size !== null ? sizeStyles[size as Size] : sizeStyles.medium}
+        ${size !== null ? sizeStyles[size as HeadingSize] : sizeStyles.medium}
     `}
 `;
