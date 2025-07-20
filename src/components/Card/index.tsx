@@ -1,33 +1,31 @@
 import React from 'react';
+import { useTheme } from 'styled-components';
 import { Box, BoxProps } from '../Box';
 
-interface CardProps extends BoxProps {
+interface CardProps extends Omit<BoxProps, 'borderRadius' | 'padding' | 'backgroundColor'> {
     children: React.ReactNode;
-
-    borderRadius?: BoxProps['borderRadius'];
-    padding?: BoxProps['padding'];
-    backgroundColor?: BoxProps['backgroundColor'];
 }
 
-export function Card({
-    children,
-    borderRadius = 12,
-    padding = 6,
-    backgroundColor = '#fff',
-    ...rest
-}: CardProps) {
+export function Card({ children, ...rest }: CardProps) {
+    const theme = useTheme();
+
+    const fixedBorderRadius = theme.border.radius;
+    const fixedPadding = theme.spacings.small;
+    const fixedBackgroundColor = theme.colors.white;
+    const fixedTransition = theme.transition.default;
+
     return (
         <Box
-            backgroundColor={backgroundColor}
-            borderRadius={borderRadius}
-            padding={padding}
+            borderRadius={fixedBorderRadius}
+            padding={fixedPadding}
+            backgroundColor={fixedBackgroundColor}
             cursor="pointer"
             {...rest}
             style={{
-                borderRadius: typeof borderRadius === 'number' ? `${borderRadius}px` : borderRadius,
-                padding: typeof padding === 'number' ? `${padding * 4}px` : padding,
-                backgroundColor,
-                transition: 'box-shadow 0.3s ease',
+                padding: typeof fixedPadding === 'number' ? `${fixedPadding * 4}px` : fixedPadding,
+                backgroundColor: fixedBackgroundColor,
+                borderRadius: typeof fixedBorderRadius === 'number' ? `${fixedBorderRadius}px` : fixedBorderRadius,
+                transition: `box-shadow ${fixedTransition}`,
                 cursor: 'pointer',
                 ...rest.style,
             }}
