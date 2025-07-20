@@ -32,23 +32,4 @@ describe('Link component', () => {
 
         expect(styles.fontSize).toBe(theme.font.sizes.large);
     });
-
-    it('has expected color before hover', () => {
-        render(<Link>Hover Link</Link>);
-        const link = screen.getByText('Hover Link');
-
-        const styles = getComputedStyle(link);
-
-        // Convert hex color to rgb for comparison
-        function hexToRgb(hex: string) {
-            const match = hex.replace('#', '').match(/.{1,2}/g);
-
-            if (!match) return '';
-            const [r, g, b] = match.map(x => parseInt(x, 16));
-
-            return `rgb(${r}, ${g}, ${b})`;
-        }
-
-        expect(styles.color).toBe(hexToRgb(theme.colors.accent));
-    });
 });

@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 
 import React from 'react';
 
-type Variant = 'primary' | 'highlight';
-type Size = 'small' | 'medium' | 'large';
+export type Variant = 'primary' | 'highlight';
+export type Size = 'small' | 'medium' | 'large';
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
     as?: React.ElementType;
     children: React.ReactNode;

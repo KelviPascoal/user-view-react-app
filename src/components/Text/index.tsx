@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 import React from 'react';
 
-type Variant = 'primary' | 'highlight';
-type Size = 'small' | 'medium' | 'large';
+export type Variant = 'primary' | 'highlight';
+export type Size = 'small' | 'medium' | 'large';
 
 export interface TextProps extends React.HTMLAttributes<HTMLElement> {
   as?: React.ElementType;
