@@ -5,29 +5,29 @@ import React from 'react';
 export type HeadingVariant = 'primary' | 'highlight';
 export type HeadingSize = 'small' | 'medium' | 'large';
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
-    as?: React.ElementType;
-    children: React.ReactNode;
-    variant?: HeadingVariant;
-    size?: HeadingSize;
+  as?: React.ElementType;
+  children: React.ReactNode;
+  variant?: HeadingVariant;
+  size?: HeadingSize;
 }
 
 const variantStyles = {
-    primary: css`
+  primary: css`
         color: ${({ theme }) => theme.colors.primary};
     `,
-    highlight: css`
+  highlight: css`
         color: ${({ theme }) => theme.colors.highlight};
     `,
 };
 
 const sizeStyles = {
-    small: css`
+  small: css`
         font-size: ${({ theme }) => theme.font.sizes.xsmall};
     `,
-    medium: css`
+  medium: css`
         font-size: ${({ theme }) => theme.font.sizes.small};
     `,
-    large: css`
+  large: css`
         font-size: ${({ theme }) => theme.font.sizes.xxlarge};
     `,
 };

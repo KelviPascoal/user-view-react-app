@@ -13,8 +13,8 @@ import { Spinner, Container, Box, Button, Text } from '../../components';
 import { UserCard } from '../../components';
 import { useTranslation } from 'react-i18next';
 import { Input } from '../../components/Input';
-import { FavoriteButton } from '../../features';
 import { useIsMobile } from '../../hooks/useIsMobile';
+import { FavoriteButton } from './components/FavoriteButton';
 
 export function Home() {
     const { t } = useTranslation();
