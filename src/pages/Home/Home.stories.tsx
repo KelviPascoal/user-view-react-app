@@ -7,30 +7,30 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n/i18n';
 
 // Defina só o que precisa para o mock de estado
+const user = {
+    id: 1,
+    name: 'Kelvi Pascoal',
+    username: 'kelvi',
+    email: 'kelvi@example.com',
+    phone: '123-4567',
+    website: 'kelvi.dev',
+    address: {
+        street: 'Rua A',
+        suite: '123',
+        city: 'Cidade',
+        zipcode: '00000',
+        geo: { lat: '0', lng: '0' },
+    },
+    company: {
+        name: 'Compania X',
+        catchPhrase: 'Frase legal',
+        bs: 'Setor Y',
+    },
+}
+
 const initialUsersState = {
-    filtered: [
-        {
-            id: 1,
-            name: 'Kelvi Pascoal',
-            username: 'kelvi',
-            email: 'kelvi@example.com',
-            phone: '123-4567',
-            website: 'kelvi.dev',
-            address: {
-                street: 'Rua A',
-                suite: '123',
-                city: 'Cidade',
-                zipcode: '00000',
-                geo: { lat: '0', lng: '0' },
-            },
-            company: {
-                name: 'Compania X',
-                catchPhrase: 'Frase legal',
-                bs: 'Setor Y',
-            },
-        },
-    ],
-    favorites: [],
+    filtered: [user, { ...user, id: 2 }, { ...user, id: 3 }, { ...user, id: 4 }, { ...user, id: 5 }],
+    favorites: [{ ...user, id: 2 }, { ...user, id: 4 }],
     selectedUser: null,
     loading: false,
 };

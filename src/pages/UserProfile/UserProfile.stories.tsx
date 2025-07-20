@@ -1,13 +1,12 @@
-// UserProfile.stories.tsx
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { ThemeProvider } from 'styled-components';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { UserProfile } from './';
 import { theme } from '../../styles/theme';
 
-// Mock do Redux
+// Mock do Redux com user carregado
 const initialStateWithUser = {
     users: {
         selectedUser: {
@@ -30,44 +29,41 @@ const initialStateWithUser = {
                 bs: 'innovation',
             },
         },
+        loading: false,
     },
 };
 
+// Mock do Redux sem user selecionado
 const initialStateWithoutUser = {
     users: {
         selectedUser: null,
+        loading: true,
     },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function reducer(state = initialStateWithUser, action: any) {
-    switch (action.type) {
-        default:
-            return state;
-    }
-}
-
+// Cria store mockado
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function createMockStore(initialState: any) {
-    return createStore(reducer, initialState);
+    return createStore(() => initialState);
 }
 
+// Mock simples de i18n
 const I18nProviderMock: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const useTranslation = () => ({
         t: (key: string) => {
             const translations: Record<string, string> = {
-                NO_USER_SELECTED: 'No user selected.',
-                BACK: 'Back',
-                BASIC_INFORMATION: 'Basic Information',
-                EMAIL: 'Email',
-                PHONE: 'Phone',
-                WEBSITE: 'Website',
-                ADDRESS: 'Address',
-                GEO: 'Geo',
-                COMPANY: 'Company',
-                NAME: 'Name',
-                PHRASE: 'Phrase',
-                SECTOR: 'Sector',
+                BASIC_INFORMATION: "Informações básicas",
+                EMAIL: "Email",
+                PHONE: "Telefone",
+                WEBSITE: "Website",
+                ADDRESS: "Endereço",
+                GEO: "Geo",
+                COMPANY: "Empresa",
+                NAME: "Nome",
+                PHRASE: "Frase",
+                SECTOR: "Setor",
+                BACK: "Voltar",
+                NO_USERS_FOUND: "Nenhum usuário encontrado"
             };
 
             return translations[key] || key;
@@ -85,18 +81,22 @@ export default {
     component: UserProfile,
 };
 
+// Template que simula a rota "/user/:id"
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Template = (store: any) => (
     <Provider store={store}>
         <ThemeProvider theme={theme}>
-            <MemoryRouter>
+            <MemoryRouter initialEntries={['/user/1']}>
                 <I18nProviderMock>
-                    <UserProfile />
+                    <Routes>
+                        <Route path="/user/:id" element={<UserProfile />} />
+                    </Routes>
                 </I18nProviderMock>
             </MemoryRouter>
         </ThemeProvider>
     </Provider>
 );
 
+// Histórias
 export const WithUser = () => Template(createMockStore(initialStateWithUser));
-export const WithoutUser = () => Template(createMockStore(initialStateWithoutUser));
+export const LoadingState = () => Template(createMockStore(initialStateWithoutUser));

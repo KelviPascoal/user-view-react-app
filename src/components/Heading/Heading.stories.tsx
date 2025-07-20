@@ -26,15 +26,6 @@ export default meta;
 
 type Story = StoryObj<typeof Heading>;
 
-export const Playground: Story = {
-    args: {
-        children: 'Exemplo de Título',
-        variant: 'primary',
-        size: 'medium',
-        as: 'h2',
-    },
-    render: (args) => <Heading {...args}>{args.children}</Heading>,
-};
 export const Default: Story = {
     args: {
         children: 'Título Padrão',

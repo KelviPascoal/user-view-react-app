@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
     loadUsersRequest,
-    setSelectedUser,
     addFavorite,
     removeFavorite
 } from '../../store/modules/user/actions';
@@ -14,8 +13,8 @@ import { Spinner, Container, Box, Button, Text } from '../../components';
 import { UserCard } from '../../components';
 import { useTranslation } from 'react-i18next';
 import { Input } from '../../components/Input';
-import { FavoriteButton } from '../../features';
 import { useIsMobile } from '../../hooks/useIsMobile';
+import { FavoriteButton } from './components/FavoriteButton';
 
 export function Home() {
     const { t } = useTranslation();
@@ -31,10 +30,9 @@ export function Home() {
         setSearchTerm(e.target.value);
     };
 
-    const handleSelectUser = React.useCallback((user: User) => {
-        dispatch(setSelectedUser(user));
-        navigate('/user-profile');
-    }, [dispatch, navigate]);
+    const handleSelectUser = React.useCallback((id: string) => {
+        navigate(`/user-profile/${id}`);
+    }, [navigate]);
 
     const handleAddFavorite = (user: User, isFavorite: boolean) => {
         if (!isFavorite) {
@@ -84,7 +82,7 @@ export function Home() {
                             user={user}
                             sideItems={
                                 <Box display="flex" gap="1rem" height={'100%'}>
-                                    <Button onClick={() => handleSelectUser(user)}>{t('DETAILS')}</Button>
+                                    <Button onClick={() => handleSelectUser(String(user.id))}>{t('DETAILS')}</Button>
                                     <FavoriteButton
                                         onClick={() => handleAddFavorite(user, checkIfFavorite(user, favorites))}
                                         isFavorite={checkIfFavorite(user, favorites)}

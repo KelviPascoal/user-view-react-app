@@ -1,7 +1,6 @@
-import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import { FavoriteButton } from './';
-import { render } from '../../utils/test-utils';
+import { render } from '../../../../utils/test-utils';
 
 jest.mock('react-i18next', () => ({
     useTranslation: () => ({

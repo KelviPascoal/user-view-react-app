@@ -27,10 +27,29 @@ Aplicação React para visualização, filtro e gerenciamento de usuários, util
 
 Este projeto foi criado com [Create React App](https://github.com/facebook/create-react-app) e tem como objetivo listar usuários, permitir busca, favoritar e visualizar detalhes de cada usuário. O Storybook está disponível para documentação e visualização dos componentes.
 
+---
+
+✅ Requisitos
+Node.js: versão 20.12.2
+---
+
+Certifique-se de estar utilizando a mesma versão para evitar incompatibilidades. Você pode gerenciar múltiplas versões com nvm ou nvm-windows.
+
 ## Instalação
 
 ```sh
 yarn install
+```
+📦 Variáveis de Ambiente
+Para o funcionamento correto da aplicação, é necessário criar um arquivo .env na raiz do projeto com as variáveis de ambiente apropriadas.
+
+💡 Um arquivo .env.example está disponível no projeto como referência.
+Copie-o e renomeie para .env, preenchendo os valores conforme necessário:
+
+## Rodar a aplicação localmente
+
+```sh
+yarn start
 ```
 
 ## Scripts Disponíveis
