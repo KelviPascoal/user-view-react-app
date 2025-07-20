@@ -52,7 +52,7 @@ describe('Text component', () => {
 
             if (size === 'small') expect(text).toHaveStyle(`font-size: ${theme.font.sizes.xsmall}`);
             if (size === 'medium') expect(text).toHaveStyle(`font-size: ${theme.font.sizes.small}`);
-            if (size === 'large') expect(text).toHaveStyle(`font-size: ${theme.font.sizes.xxlarge}`);
+            if (size === 'large') expect(text).toHaveStyle(`font-size: ${theme.font.sizes.large}`);
         });
     });
 

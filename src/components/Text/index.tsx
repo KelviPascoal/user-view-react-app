@@ -28,7 +28,7 @@ const sizeStyles = {
     font-size: ${({ theme }) => theme.font.sizes.small};
   `,
   large: css`
-    font-size: ${({ theme }) => theme.font.sizes.xxlarge};
+    font-size: ${({ theme }) => theme.font.sizes.large};
   `,
 };
 

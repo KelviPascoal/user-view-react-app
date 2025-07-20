@@ -52,16 +52,16 @@ class UserProfileComponent extends React.Component<Props> {
           </Box>
 
           <Card>
-            <Box display="flex" alignItems="center" marginBottom="1rem" gap="0.5rem">
+            <Box display="flex" alignItems="flex-end" marginBottom="1rem" gap="1rem">
               <Heading variant="primary" size="large">
                 {user.name}
               </Heading>
-              <Text variant="highlight">
+              <Text variant="highlight" size='large'>
                 <strong>@{user.username}</strong>
               </Text>
             </Box>
 
-            <Box>
+            <Box display="flex" flexDirection={'column'} gap="1rem" marginTop="2rem">
               <Heading >{t('BASIC_INFORMATION')}</Heading>
               <Text>
                 <strong>{t('EMAIL')}:</strong> {user.email}
@@ -77,7 +77,7 @@ class UserProfileComponent extends React.Component<Props> {
               </Text>
             </Box>
 
-            <Box>
+            <Box display="flex" flexDirection={'column'} gap="1rem" marginTop="2rem">
               <Heading>{t('ADDRESS')}</Heading>
               <Text>
                 {user.address.street}, {user.address.suite}
@@ -90,7 +90,7 @@ class UserProfileComponent extends React.Component<Props> {
               </Text>
             </Box>
 
-            <Box>
+            <Box display="flex" flexDirection={'column'} gap="1rem" marginTop="2rem">
               <Heading>{t('COMPANY')}</Heading>
               <Text>
                 <strong>{t('NAME')}:</strong> {user.company.name}
@@ -103,8 +103,8 @@ class UserProfileComponent extends React.Component<Props> {
               </Text>
             </Box>
           </Card>
-        </Box>
-      </Container>
+        </Box >
+      </Container >
     );
   }
 }
