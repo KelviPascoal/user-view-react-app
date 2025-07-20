@@ -8,7 +8,7 @@ describe('Text component', () => {
         const text = getByText('Default Text');
 
         expect(text).toBeInTheDocument();
-        expect(text.tagName.toLowerCase()).toBe('p');
+        expect(text.tagName.toLowerCase()).toBe('span');
     });
 
     it('renders with custom as prop', () => {

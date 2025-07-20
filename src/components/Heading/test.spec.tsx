@@ -1,7 +1,7 @@
 import { Heading } from ".";
 import { theme } from "../../styles/theme";
 import { render } from "../../utils/test-utils";
-import type { Size, Variant } from "./";
+import type { HeadingSize, HeadingVariant } from "./";
 
 describe('Heading component', () => {
     it('renders with default props', () => {
@@ -36,7 +36,7 @@ describe('Heading component', () => {
     });
 
     it('applies all variants', () => {
-        const variants: Variant[] = ['primary', 'highlight'];
+        const variants: HeadingVariant[] = ['primary', 'highlight'];
 
         variants.forEach(variant => {
             const { getByText } = render(
@@ -51,7 +51,7 @@ describe('Heading component', () => {
         });
     });
     it('applies all sizes', () => {
-        const sizes: Size[] = ['small', 'medium', 'large'];
+        const sizes: HeadingSize[] = ['small', 'medium', 'large'];
 
         sizes.forEach(size => {
             const { getByText } = render(
