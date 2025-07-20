@@ -7,9 +7,6 @@ const meta: Meta<typeof Card> = {
     title: 'Components/Card',
     component: Card,
     tags: ['autodocs'],
-    argTypes: {
-        cursor: { control: 'text' },
-    },
 };
 
 export default meta;
@@ -27,13 +24,11 @@ export const Default: Story = {
                 </Box>
             </>
         ),
-        cursor: 'pointer',
     },
 };
 
 export const CustomStyle: Story = {
     args: {
         children: <Box>Card customizado</Box>,
-        cursor: 'default',
     },
 };
